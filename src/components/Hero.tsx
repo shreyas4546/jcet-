@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Download, ChevronRight } from 'lucide-react';
 import { useState, useRef } from 'react';
+import MagneticButton from './ui/magnetic-button-v1.0.0';
 
 interface HeroProps {
   setHighlightWhy?: (val: boolean) => void;
@@ -70,14 +71,19 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex flex-wrap gap-4"
           >
-            <a href="#admissions" className="btn-primary flex items-center gap-2 group">
-              Apply Now
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#brochure" className="btn-secondary flex items-center gap-2">
-              <Download size={18} />
-              Download Brochure
-            </a>
+            <MagneticButton onClick={() => document.getElementById('admissions')?.scrollIntoView({ behavior: 'smooth' })} className="!bg-neon !text-navy-dark">
+              <span className="flex items-center gap-2">
+                Apply Now
+                <ArrowRight size={18} />
+              </span>
+            </MagneticButton>
+            
+            <MagneticButton onClick={() => console.log('Download brochure')}>
+              <span className="flex items-center gap-2">
+                <Download size={18} />
+                Download Brochure
+              </span>
+            </MagneticButton>
           </motion.div>
         </div>
 

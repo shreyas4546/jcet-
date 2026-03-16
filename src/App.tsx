@@ -11,7 +11,7 @@ import Reveal from './components/Reveal';
 import Hero from './components/Hero';
 import FloatingStats from './components/FloatingStats';
 import WhyJCET from './components/WhyJCET';
-import ScrollStory from './components/story/scroll-story-v1.0.0';
+import ScrollStoryCinematic from './components/ScrollStoryCinematic';
 import SplitHeroSection from './components/SplitHeroSection';
 import Departments from './components/Departments';
 import CampusMap from './components/CampusMap';
@@ -40,7 +40,7 @@ export default function App() {
           <Reveal>
             <WhyJCET isHighlighted={highlightWhy} />
           </Reveal>
-          <ScrollStory />
+          <ScrollStoryCinematic />
           <Reveal>
             <SplitHeroSection />
           </Reveal>

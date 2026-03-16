@@ -33,10 +33,23 @@ export default function Footer() {
               Empowering the next generation of engineers, technologists, and innovators to build a sustainable and advanced future.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-neon transition-colors" aria-label="Facebook"><Facebook size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-neon transition-colors" aria-label="Twitter"><Twitter size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-neon transition-colors" aria-label="LinkedIn"><Linkedin size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-neon transition-colors" aria-label="Instagram"><Instagram size={20} /></a>
+              {[
+                { icon: Facebook, label: 'Facebook' },
+                { icon: Twitter, label: 'Twitter' },
+                { icon: Linkedin, label: 'LinkedIn' },
+                { icon: Instagram, label: 'Instagram' },
+              ].map((social) => (
+                <motion.a
+                  key={social.label}
+                  href="#"
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="text-gray-400 hover:text-neon transition-colors duration-300 p-2 bg-white/5 rounded-lg border border-white/5 hover:border-neon/30"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
             </div>
           </div>
 

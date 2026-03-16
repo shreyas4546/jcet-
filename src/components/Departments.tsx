@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import MagneticCard from './ui/magnetic-card-v1.0.0';
 
 export default function Departments() {
   const departments = [
@@ -66,29 +67,21 @@ export default function Departments() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300 flex flex-col group"
+              className="h-[400px]"
             >
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={dept.image}
-                  alt={dept.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001a38] to-transparent opacity-80" />
-              </div>
-              
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
-                  {dept.name}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6 flex-grow">
+              <MagneticCard
+                title={dept.name}
+                subtitle="Department"
+                imageSrc={dept.image}
+                className="h-full"
+              >
+                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
                   {dept.description}
                 </p>
-                <button className="w-full bg-white/10 hover:bg-cyan-500 hover:text-navy-dark text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300">
-                  View Department
+                <button className="text-neon font-bold text-xs uppercase tracking-widest hover:underline">
+                  Explore More
                 </button>
-              </div>
+              </MagneticCard>
             </motion.div>
           ))}
         </div>
