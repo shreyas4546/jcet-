@@ -1,0 +1,51 @@
+/* 
+  Magnetic Interaction Helpers
+  Project: jcet-site-v8
+  Description: Provides base styles and accessibility overrides for magnetic components.
+*/
+
+:root {
+  --magnetic-intensity: 1;
+  --jcet-neon: #00E5FF;
+  --jcet-navy: #0A0F1E;
+}
+
+.magnetic-wrap {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Fallback for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-wrap {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Focus states for keyboard users */
+.magnetic-wrap:focus-within {
+  outline: none;
+}
+
+.magnetic-button-base:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.3);
+  transform: scale(0.98);
+}
+
+.magnetic-card-base:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Touch device overrides */
+@media (pointer: coarse) {
+  .magnetic-wrap {
+    transform: none !important;
+  }
+}
