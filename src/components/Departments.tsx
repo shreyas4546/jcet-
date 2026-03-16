@@ -1,14 +1,37 @@
 import { motion } from 'motion/react';
-import { Cpu, Settings, Building2, Zap, BrainCircuit, Briefcase } from 'lucide-react';
 
 export default function Departments() {
   const departments = [
-    { name: 'Computer Science Engineering', icon: <Cpu size={28} />, color: 'text-blue-400' },
-    { name: 'Mechanical Engineering', icon: <Settings size={28} />, color: 'text-gray-400' },
-    { name: 'Civil Engineering', icon: <Building2 size={28} />, color: 'text-orange-400' },
-    { name: 'Electronics Engineering', icon: <Zap size={28} />, color: 'text-warm' },
-    { name: 'Artificial Intelligence', icon: <BrainCircuit size={28} />, color: 'text-neon' },
-    { name: 'MBA', icon: <Briefcase size={28} />, color: 'text-purple-400' },
+    {
+      name: 'Computer Science Engineering',
+      description: 'Learn software development, algorithms, and computing systems.',
+      image: 'https://picsum.photos/seed/cse/800/600',
+    },
+    {
+      name: 'Artificial Intelligence and Machine Learning',
+      description: 'Explore neural networks, data science, and intelligent systems.',
+      image: 'https://picsum.photos/seed/aiml/800/600',
+    },
+    {
+      name: 'Mechanical Engineering',
+      description: 'Design, analyze, and manufacture advanced mechanical systems.',
+      image: 'https://picsum.photos/seed/mech/800/600',
+    },
+    {
+      name: 'Civil Engineering',
+      description: 'Build sustainable infrastructure, smart cities, and structural designs.',
+      image: 'https://picsum.photos/seed/civil/800/600',
+    },
+    {
+      name: 'Electronics Engineering',
+      description: 'Innovate with microprocessors, embedded systems, and IoT devices.',
+      image: 'https://picsum.photos/seed/ece/800/600',
+    },
+    {
+      name: 'MBA',
+      description: 'Develop leadership, management, and entrepreneurial skills.',
+      image: 'https://picsum.photos/seed/mba/800/600',
+    },
   ];
 
   return (
@@ -19,39 +42,54 @@ export default function Departments() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-4 text-white"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-3xl md:text-5xl font-bold mb-4 text-white"
           >
-            Academic <span className="text-neon">Departments</span>
+            Academic <span className="text-cyan-400">Departments</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="text-gray-400 max-w-2xl mx-auto text-lg"
           >
             Specialized centers of excellence driving research, innovation, and leadership.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {departments.map((dept, index) => (
-            <motion.a
-              href={`#dept-${index}`}
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-panel p-8 flex flex-col items-center justify-center text-center gap-6 group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-neon border border-white/10 shadow-xl"
+              transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300 flex flex-col group"
             >
-              <div className={`p-5 rounded-2xl bg-white/5 group-hover:bg-white/10 transition-colors ${dept.color} shadow-inner`}>
-                {dept.icon}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={dept.image}
+                  alt={dept.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001a38] to-transparent opacity-80" />
               </div>
-              <h3 className="text-lg font-bold text-gray-200 group-hover:text-white transition-colors">
-                {dept.name}
-              </h3>
-            </motion.a>
+              
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                  {dept.name}
+                </h3>
+                <p className="text-gray-400 text-sm mb-6 flex-grow">
+                  {dept.description}
+                </p>
+                <button className="w-full bg-white/10 hover:bg-cyan-500 hover:text-navy-dark text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300">
+                  View Department
+                </button>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

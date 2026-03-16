@@ -92,10 +92,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Credit Placeholder */}
+        {/* Credit Text */}
         <div className="mt-8 text-center">
-          <p className="text-[10px] text-gray-600 font-mono">
-            Built by {'{{AUTHOR_NAME}}'} — Student Web Lead (JCET)
+          <p className="text-xs text-gray-500 font-mono tracking-wide">
+            Website Designed by Shreyas M U
           </p>
         </div>
       </div>

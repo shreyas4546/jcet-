@@ -37,6 +37,7 @@ export default function WhyJCET({ isHighlighted }: WhyJCETProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
             Why Choose <span className="text-neon">JCET</span>?
@@ -45,7 +46,7 @@ export default function WhyJCET({ isHighlighted }: WhyJCETProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto"
           >
             We don't just teach engineering; we cultivate innovators. Discover what makes our approach unique.
@@ -59,7 +60,7 @@ export default function WhyJCET({ isHighlighted }: WhyJCETProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.2 }}
               className="glass-panel p-8 glass-panel-hover group"
             >
               <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">

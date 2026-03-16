@@ -26,6 +26,7 @@ export default function Placements() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
             Stellar <span className="text-neon">Placements</span>
@@ -34,7 +35,7 @@ export default function Placements() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto"
           >
             Our students are recruited by the world's leading technology companies.
@@ -49,7 +50,7 @@ export default function Placements() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.2 }}
               className="glass-panel p-8 text-center group hover:border-neon/50 transition-colors"
             >
               <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -91,7 +92,7 @@ export default function Placements() {
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.2 }}
                   className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
                 >
                   <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-navy-dark text-neon shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">

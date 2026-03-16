@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Download, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface HeroProps {
   setHighlightWhy?: (val: boolean) => void;
@@ -8,6 +8,13 @@ interface HeroProps {
 
 export default function Hero({ setHighlightWhy }: HeroProps) {
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
+  const ref = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   const hotspots = [
     { id: 1, x: '25%', y: '25%', title: 'Computer Science Engineering', desc: 'Master software development, algorithms, and computing systems.' },
@@ -19,9 +26,23 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-navy-dark">
+    <section ref={ref} className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-navy-dark">
+      {/* Parallax Background */}
+      <motion.div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{ y: backgroundY }}
+      >
+        <img 
+          src="https://picsum.photos/seed/jcet-hero/1920/1080" 
+          alt="JCET Campus" 
+          className="w-full h-[150%] object-cover opacity-20"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-navy-dark/80" />
+      </motion.div>
+
       {/* Background Gradient / Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon/10 rounded-full blur-[120px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
@@ -30,7 +51,7 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-white">
               Engineering the <br />
@@ -46,7 +67,7 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex flex-wrap gap-4"
           >
             <a href="#admissions" className="btn-primary flex items-center gap-2 group">
@@ -67,7 +88,7 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             className="absolute inset-0 flex items-center justify-center"
           >
             <div className="w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full border border-white/10 relative animate-[spin_60s_linear_infinite] [transform-style:preserve-3d]">
@@ -120,7 +141,7 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
 
       {/* Interactive Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center cursor-pointer group"
+        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center cursor-pointer group"
         onMouseEnter={() => setHighlightWhy?.(true)}
         onMouseLeave={() => setHighlightWhy?.(false)}
         onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}

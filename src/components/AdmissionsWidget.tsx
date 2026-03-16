@@ -67,6 +67,7 @@ export default function AdmissionsWidget() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 Admissions <span className="text-neon">2026</span>
@@ -106,6 +107,7 @@ export default function AdmissionsWidget() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="glass-panel p-8 md:p-12 border border-white/10 shadow-2xl"
             >
               <div className="flex items-center justify-between mb-8">
