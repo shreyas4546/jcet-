@@ -22,8 +22,8 @@ export default function Gallery() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
             Campus <span className="text-neon">Life</span>
@@ -31,8 +31,8 @@ export default function Gallery() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto"
           >
             Experience the vibrant atmosphere and state-of-the-art facilities at JCET.
@@ -46,8 +46,8 @@ export default function Gallery() {
               key={img.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
               className={`relative rounded-xl overflow-hidden group cursor-pointer ${img.span}`}
               onClick={() => setSelectedImage(img.src)}
               role="button"

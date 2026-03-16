@@ -13,8 +13,8 @@ export default function SplitHeroSection() {
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-5xl font-bold leading-tight">
             Engineering the Future at JCET
@@ -35,8 +35,8 @@ export default function SplitHeroSection() {
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="relative"
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/30 to-transparent rounded-xl transform translate-x-4 translate-y-4 -z-10 blur-sm" />

@@ -8,8 +8,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FloatingStats from './components/FloatingStats';
 import WhyJCET from './components/WhyJCET';
+import ScrollStory from './components/story/scroll-story-v1.0.0';
 import SplitHeroSection from './components/SplitHeroSection';
 import Departments from './components/Departments';
+import CampusMap from './components/CampusMap';
 import CampusLife from './components/CampusLife';
 import Placements from './components/Placements';
 import StudentSpotlight from './components/StudentSpotlight';
@@ -30,8 +32,10 @@ export default function App() {
         <Hero setHighlightWhy={setHighlightWhy} />
         <FloatingStats />
         <WhyJCET isHighlighted={highlightWhy} />
+        <ScrollStory />
         <SplitHeroSection />
         <Departments />
+        <CampusMap />
         <CampusLife />
         <Placements />
         <StudentSpotlight />

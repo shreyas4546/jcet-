@@ -36,8 +36,8 @@ export default function StudentSpotlight() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
             Student <span className="text-neon">Spotlight</span>
@@ -45,8 +45,8 @@ export default function StudentSpotlight() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto"
           >
             Hear directly from our students about their journey, projects, and life at JCET.
@@ -59,8 +59,8 @@ export default function StudentSpotlight() {
               key={spotlight.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
               className="min-w-[280px] md:min-w-[340px] h-[480px] rounded-2xl overflow-hidden relative group snap-center flex-shrink-0 cursor-pointer"
             >
               {/* Thumbnail */}

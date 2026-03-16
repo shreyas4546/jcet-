@@ -46,18 +46,19 @@ export default function Faculty() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-3xl md:text-4xl font-bold mb-4"
             >
               World-Class <span className="text-neon">Faculty</span>
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
               className="text-gray-400 max-w-xl"
             >
               Learn from industry veterans and renowned researchers who bring real-world experience into the classroom.
@@ -72,8 +73,8 @@ export default function Faculty() {
               onClick={() => setSelectedFaculty(faculty)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
               className="glass-panel p-6 text-left group hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon"
               aria-label={`View profile of ${faculty.name}`}
             >
