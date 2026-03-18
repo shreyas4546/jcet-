@@ -60,7 +60,7 @@ export default function CampusMap() {
   };
 
   return (
-    <section className="py-20 bg-navy-dark relative overflow-hidden" id="campus-map">
+    <section className="py-20 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden" id="campus-map">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-12">
           <motion.h2 
@@ -88,7 +88,7 @@ export default function CampusMap() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-          className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-navy/50 rounded-2xl border border-glass-border overflow-hidden shadow-2xl"
+          className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-[#0B0F1A]/50 rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
         >
           {/* Map Image */}
           <img 
@@ -106,7 +106,7 @@ export default function CampusMap() {
               style={{ top: spot.top, left: spot.left }}
             >
               <button
-                className="relative group focus:outline-none focus:ring-4 focus:ring-neon rounded-full p-2"
+                className="relative group focus:outline-none focus:ring-4 focus:ring-cyan-400 rounded-full p-2"
                 onClick={() => {
                   setActiveSpot(spot);
                   setMapInfo(null);
@@ -115,8 +115,8 @@ export default function CampusMap() {
                 aria-label={`View details for ${spot.name}`}
                 aria-expanded={activeSpot?.id === spot.id}
               >
-                <div className="absolute inset-0 bg-neon rounded-full animate-ping opacity-75"></div>
-                <div className="relative w-4 h-4 bg-neon rounded-full border-2 border-white shadow-[0_0_10px_rgba(0,229,255,0.8)] transition-transform group-hover:scale-125"></div>
+                <div className="absolute inset-0 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
+                <div className="relative w-4 h-4 bg-cyan-400 rounded-full border-2 border-white shadow-[0_0_10px_rgba(6,182,212,0.8)] transition-transform group-hover:scale-125"></div>
               </button>
             </div>
           ))}
@@ -132,14 +132,14 @@ export default function CampusMap() {
               >
                 <button 
                   onClick={() => setActiveSpot(null)}
-                  className="absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-neon rounded-full p-1 transition-colors"
+                  className="absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-full p-1 transition-colors"
                   aria-label="Close popup"
                 >
                   <X size={20} />
                 </button>
                 
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="p-2 bg-neon/20 rounded-lg text-neon">
+                  <div className="p-2 bg-cyan-400/20 rounded-lg text-cyan-400">
                     <MapPin size={24} />
                   </div>
                   <div>
@@ -150,7 +150,7 @@ export default function CampusMap() {
 
                 {mapInfo ? (
                   <div className="mt-4 pt-4 border-t border-white/10">
-                    <h4 className="text-xs font-semibold text-neon uppercase tracking-wider mb-2">AI Insights (Google Maps)</h4>
+                    <h4 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">AI Insights (Google Maps)</h4>
                     <p className="text-sm text-gray-200">{mapInfo}</p>
                     {mapLinks.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-2">
@@ -160,7 +160,7 @@ export default function CampusMap() {
                             href={link} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-neon"
+                            className="inline-flex items-center gap-1 text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400"
                           >
                             View on Maps <ExternalLink size={12} />
                           </a>
@@ -172,7 +172,7 @@ export default function CampusMap() {
                   <button 
                     onClick={() => handleViewMore(activeSpot)}
                     disabled={loadingMapInfo}
-                    className="mt-4 w-full bg-white/10 hover:bg-white/20 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-neon disabled:opacity-50"
+                    className="mt-4 w-full bg-white/10 hover:bg-white/20 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-400 disabled:opacity-50"
                   >
                     {loadingMapInfo ? (
                       <><Loader2 size={16} className="animate-spin" /> Fetching Info...</>

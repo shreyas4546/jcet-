@@ -141,9 +141,9 @@ const MagneticCard: React.FC<MagneticCardProps> = ({
         className="
           magnetic-card-base
           relative w-full h-full rounded-2xl overflow-hidden
-          bg-navy-dark border border-white/10
+          bg-[#0B0F1A] border border-white/10
           transition-shadow duration-500
-          hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(0,229,255,0.1)]
+          hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(6,182,212,0.1)]
           group
         "
         style={{ transformStyle: 'preserve-3d' }}
@@ -156,14 +156,14 @@ const MagneticCard: React.FC<MagneticCardProps> = ({
               className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/40 to-transparent" />
           </div>
         )}
         
         <div className="relative z-10 p-8 h-full flex flex-col justify-end">
           <div style={{ transform: 'translateZ(20px)' }}>
             {subtitle && (
-              <p className="text-neon text-xs font-bold uppercase tracking-widest mb-2">
+              <p className="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-2">
                 {subtitle}
               </p>
             )}

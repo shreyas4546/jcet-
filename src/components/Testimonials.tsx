@@ -70,7 +70,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-24 bg-navy-dark relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2
@@ -78,16 +78,16 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold mb-4 text-white"
           >
-            What Our <span className="text-neon">Students Say</span>
+            What Our <span className="text-cyan-400">Students Say</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto"
+            className="text-gray-300 max-w-2xl mx-auto"
           >
             Discover the experiences and success stories of students who have shaped their future at JCET.
           </motion.p>
@@ -109,7 +109,7 @@ export default function Testimonials() {
               className="absolute w-full max-w-4xl glass-panel p-8 md:p-12 flex flex-col md:flex-row items-center gap-8"
             >
               <div className="relative shrink-0">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-neon/20">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-cyan-400/20">
                   <img
                     src={TESTIMONIALS[currentIndex].image}
                     alt={TESTIMONIALS[currentIndex].name}
@@ -117,7 +117,7 @@ export default function Testimonials() {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 bg-neon text-navy-dark p-2 rounded-full shadow-lg">
+                <div className="absolute -bottom-2 -right-2 bg-cyan-400 text-[#0B0F1A] p-2 rounded-full shadow-lg">
                   <Quote size={16} fill="currentColor" />
                 </div>
               </div>
@@ -128,7 +128,7 @@ export default function Testimonials() {
                 </p>
                 <div>
                   <h4 className="text-xl font-bold text-white">{TESTIMONIALS[currentIndex].name}</h4>
-                  <p className="text-neon text-sm font-medium">{TESTIMONIALS[currentIndex].role}</p>
+                  <p className="text-cyan-400 text-sm font-medium">{TESTIMONIALS[currentIndex].role}</p>
                 </div>
               </div>
             </motion.div>
@@ -138,14 +138,14 @@ export default function Testimonials() {
           <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 md:-px-12 pointer-events-none">
             <button
               onClick={prevSlide}
-              className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors pointer-events-auto group focus:outline-none focus:ring-2 focus:ring-neon"
+              className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors pointer-events-auto group focus:outline-none focus:ring-2 focus:ring-cyan-400"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
             </button>
             <button
               onClick={nextSlide}
-              className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors pointer-events-auto group focus:outline-none focus:ring-2 focus:ring-neon"
+              className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors pointer-events-auto group focus:outline-none focus:ring-2 focus:ring-cyan-400"
               aria-label="Next testimonial"
             >
               <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
@@ -163,7 +163,7 @@ export default function Testimonials() {
                 setCurrentIndex(index);
               }}
               className={`h-2 transition-all duration-300 rounded-full ${
-                index === currentIndex ? 'w-8 bg-neon' : 'w-2 bg-white/20 hover:bg-white/40'
+                index === currentIndex ? 'w-8 bg-cyan-400' : 'w-2 bg-white/20 hover:bg-white/40'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

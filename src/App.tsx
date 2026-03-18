@@ -25,57 +25,69 @@ import AdmissionsCTA from './components/AdmissionsCTA';
 import AdmissionsWidget from './components/AdmissionsWidget';
 import Footer from './components/Footer';
 import AIAssistant from './components/AIAssistant';
+import AnimatedGradientBackground from './components/background/animated-gradient-bg-v1.0.0';
+import { ABTestProvider } from './components/ABTesting';
+import ABTestDashboard from './components/ABTestDashboard';
+import ScrollToTop from './components/ScrollToTop';
+import CustomCursorV1_3 from './components/ui/custom-cursor-v1.3';
 
 export default function App() {
   const [highlightWhy, setHighlightWhy] = useState(false);
 
   return (
-    <SmoothScroll>
-      <div className="min-h-screen bg-navy-dark text-white font-body selection:bg-neon selection:text-navy-dark">
-        <ScrollProgress />
-        <Navbar />
-        <main>
-          <Hero setHighlightWhy={setHighlightWhy} />
-          <FloatingStats />
-          <Reveal>
-            <WhyJCET isHighlighted={highlightWhy} />
-          </Reveal>
-          <ScrollStoryCinematic />
-          <Reveal>
-            <SplitHeroSection />
-          </Reveal>
-          <Reveal>
-            <Departments />
-          </Reveal>
-          <Reveal>
-            <CampusMap />
-          </Reveal>
-          <Reveal>
-            <CampusLife />
-          </Reveal>
-          <Reveal>
-            <Placements />
-          </Reveal>
-          <Reveal>
-            <StudentSpotlight />
-          </Reveal>
-          <Reveal>
-            <Testimonials />
-          </Reveal>
-          <Reveal>
-            <NewsEvents />
-          </Reveal>
-          <Reveal>
-            <Gallery />
-          </Reveal>
-          <Reveal>
-            <AdmissionsCTA />
-          </Reveal>
-          <AdmissionsWidget />
-        </main>
-        <Footer />
-        <AIAssistant />
-      </div>
-    </SmoothScroll>
+    <ABTestProvider>
+      <CustomCursorV1_3 debug={true} />
+      <SmoothScroll>
+        <AnimatedGradientBackground>
+          <div className="min-h-screen text-white font-body selection:bg-cyan-400 selection:text-[#0B0F1A]">
+            <ScrollProgress />
+            <Navbar />
+            <main>
+              <Hero setHighlightWhy={setHighlightWhy} />
+              <FloatingStats />
+              <Reveal>
+                <WhyJCET isHighlighted={highlightWhy} />
+              </Reveal>
+              <ScrollStoryCinematic />
+              <Reveal>
+                <SplitHeroSection />
+              </Reveal>
+              <Reveal>
+                <Departments />
+              </Reveal>
+              <Reveal>
+                <CampusMap />
+              </Reveal>
+              <Reveal>
+                <CampusLife />
+              </Reveal>
+              <Reveal>
+                <Placements />
+              </Reveal>
+              <Reveal>
+                <StudentSpotlight />
+              </Reveal>
+              <Reveal>
+                <Testimonials />
+              </Reveal>
+              <Reveal>
+                <NewsEvents />
+              </Reveal>
+              <Reveal>
+                <Gallery />
+              </Reveal>
+              <Reveal>
+                <AdmissionsCTA />
+              </Reveal>
+              <AdmissionsWidget />
+            </main>
+            <Footer />
+            <AIAssistant />
+            <ABTestDashboard />
+            <ScrollToTop />
+          </div>
+        </AnimatedGradientBackground>
+      </SmoothScroll>
+    </ABTestProvider>
   );
 }

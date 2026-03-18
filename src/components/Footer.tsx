@@ -5,9 +5,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-navy-dark border-t border-white/10 pt-24 pb-8 relative overflow-hidden">
+    <footer id="contact" className="bg-[#0B0F1A] border-t border-white/10 pt-24 pb-8 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-neon/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-400/5 rounded-full blur-[100px] pointer-events-none" />
 
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -20,8 +20,8 @@ export default function Footer() {
           
           {/* Brand & About */}
           <div className="space-y-6">
-            <a href="#" className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-neon rounded-lg w-fit">
-              <div className="w-10 h-10 bg-neon rounded-lg flex items-center justify-center text-navy-dark font-bold text-xl group-hover:scale-105 transition-transform">
+            <a href="#" className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-lg w-fit">
+              <div className="w-10 h-10 bg-cyan-400 rounded-lg flex items-center justify-center text-[#0B0F1A] font-bold text-xl group-hover:scale-105 transition-transform">
                 JC
               </div>
               <div>
@@ -44,7 +44,7 @@ export default function Footer() {
                   href="#"
                   whileHover={{ scale: 1.2, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="text-gray-400 hover:text-neon transition-colors duration-300 p-2 bg-white/5 rounded-lg border border-white/5 hover:border-neon/30"
+                  className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 p-2 bg-white/5 rounded-lg border border-white/5 hover:border-cyan-400/30"
                   aria-label={social.label}
                 >
                   <social.icon size={20} />
@@ -59,7 +59,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {['About Us', 'Academics', 'Admissions', 'Placements', 'Research', 'Campus Life'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-neon transition-colors focus:outline-none focus:ring-2 focus:ring-neon rounded-sm px-1 -ml-1">
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-sm px-1 -ml-1">
                     {link}
                   </a>
                 </li>
@@ -72,15 +72,15 @@ export default function Footer() {
             <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-gray-400">
-                <MapPin size={18} className="text-neon shrink-0 mt-0.5" />
+                <MapPin size={18} className="text-cyan-400 shrink-0 mt-0.5" />
                 <span>JCET Campus, PB Road,<br />Hubballi, Karnataka 580031</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-gray-400">
-                <Phone size={18} className="text-neon shrink-0" />
+                <Phone size={18} className="text-cyan-400 shrink-0" />
                 <a href="tel:+918361234567" className="hover:text-white transition-colors">+91 836 1234 567</a>
               </li>
               <li className="flex items-center gap-3 text-sm text-gray-400">
-                <Mail size={18} className="text-neon shrink-0" />
+                <Mail size={18} className="text-cyan-400 shrink-0" />
                 <a href="mailto:admissions@jcet.edu.in" className="hover:text-white transition-colors">admissions@jcet.edu.in</a>
               </li>
             </ul>
@@ -88,8 +88,8 @@ export default function Footer() {
 
           {/* Map Placeholder */}
           <div className="h-48 rounded-xl overflow-hidden border border-white/10 relative group">
-            <div className="absolute inset-0 bg-navy-dark/50 group-hover:bg-transparent transition-colors z-10 flex items-center justify-center">
-              <span className="bg-navy-dark/80 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-white border border-white/10 group-hover:opacity-0 transition-opacity">
+            <div className="absolute inset-0 bg-[#0B0F1A]/50 group-hover:bg-transparent transition-colors z-10 flex items-center justify-center">
+              <span className="bg-[#0B0F1A]/80 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-white border border-white/10 group-hover:opacity-0 transition-opacity">
                 View on Map
               </span>
             </div>

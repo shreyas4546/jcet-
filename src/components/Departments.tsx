@@ -36,7 +36,7 @@ export default function Departments() {
   ];
 
   return (
-    <section id="departments" className="py-24 bg-navy-dark relative">
+    <section id="departments" className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2
@@ -53,7 +53,7 @@ export default function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto text-lg"
+            className="text-gray-300 max-w-2xl mx-auto text-lg"
           >
             Specialized centers of excellence driving research, innovation, and leadership.
           </motion.p>
@@ -78,7 +78,7 @@ export default function Departments() {
                 <p className="text-gray-300 text-sm mb-4 line-clamp-2">
                   {dept.description}
                 </p>
-                <button className="text-neon font-bold text-xs uppercase tracking-widest hover:underline">
+                <button className="text-cyan-400 font-bold text-xs uppercase tracking-widest hover:underline">
                   Explore More
                 </button>
               </MagneticCard>

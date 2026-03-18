@@ -41,7 +41,7 @@ const STORY_STEPS = [
 
 const ScrollStoryCinematic: React.FC = () => {
   return (
-    <div className="relative bg-gradient-to-b from-[#002752] via-black to-[#001c34]">
+    <div className="relative bg-gradient-to-b from-[#0B0F1A] via-[#111827] to-black">
       {STORY_STEPS.map((step, index) => (
         <section 
           key={step.id} 
@@ -76,7 +76,7 @@ const ScrollStoryCinematic: React.FC = () => {
                 initial={{ opacity: 0, letterSpacing: '0.5em' }}
                 whileInView={{ opacity: 0.6, letterSpacing: '0.3em' }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="text-neon font-mono text-xs md:text-sm font-bold uppercase mb-6 block"
+                className="text-cyan-400 font-mono text-xs md:text-sm font-bold uppercase mb-6 block"
               >
                 Chapter 0{index + 1}
               </motion.span>
@@ -87,14 +87,14 @@ const ScrollStoryCinematic: React.FC = () => {
                 initial={{ width: 0 }}
                 whileInView={{ width: '100px' }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="mt-12 h-1 bg-gradient-to-r from-transparent via-neon to-transparent mx-auto rounded-full" 
+                className="mt-12 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto rounded-full" 
               />
             </motion.div>
           </div>
 
           {/* Decorative Elements */}
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 opacity-20">
-            <div className="w-[1px] h-24 bg-gradient-to-b from-neon to-transparent" />
+            <div className="w-[1px] h-24 bg-gradient-to-b from-cyan-400 to-transparent" />
           </div>
         </section>
       ))}

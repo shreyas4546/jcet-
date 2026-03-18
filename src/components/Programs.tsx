@@ -30,7 +30,7 @@ export default function Programs() {
   ];
 
   return (
-    <section id="academics" className="py-24 bg-navy-light/20 relative overflow-hidden">
+    <section id="academics" className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
@@ -39,9 +39,9 @@ export default function Programs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-3xl md:text-4xl font-bold mb-4 text-white"
             >
-              Academic <span className="text-neon">Programs</span>
+              Academic <span className="text-cyan-400">Programs</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ export default function Programs() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             href="#all-programs"
-            className="text-neon hover:text-neon-hover font-medium flex items-center gap-2 group"
+            className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-2 group"
           >
             View All Programs
             <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -78,19 +78,19 @@ export default function Programs() {
               className="min-w-[320px] md:min-w-[400px] glass-panel overflow-hidden group snap-center flex-shrink-0 relative"
             >
               <div className="h-48 overflow-hidden relative">
-                <div className="absolute inset-0 bg-navy-dark/40 group-hover:bg-transparent transition-colors z-10" />
+                <div className="absolute inset-0 bg-[#0B0F1A]/40 group-hover:bg-transparent transition-colors z-10" />
                 <img
                   src={program.image}
                   alt={program.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute top-4 right-4 z-20 bg-navy-dark/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-warm">
+                <div className="absolute top-4 right-4 z-20 bg-[#0B0F1A]/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-pink-400">
                   {program.duration}
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                   {program.title}
                 </h3>
                 <p className="text-sm text-gray-400 mb-6 line-clamp-2">
@@ -98,7 +98,7 @@ export default function Programs() {
                 </p>
                 <button className="text-sm font-semibold text-white flex items-center gap-2 group/btn">
                   Learn More
-                  <ChevronRight size={16} className="text-neon group-hover/btn:translate-x-1 transition-transform" />
+                  <ChevronRight size={16} className="text-cyan-400 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
             </motion.div>

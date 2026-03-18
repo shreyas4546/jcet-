@@ -41,7 +41,7 @@ export default function Faculty() {
   ];
 
   return (
-    <section className="py-24 bg-navy-light/20 relative">
+    <section className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
@@ -50,9 +50,9 @@ export default function Faculty() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-3xl md:text-4xl font-bold mb-4 text-white"
             >
-              World-Class <span className="text-neon">Faculty</span>
+              World-Class <span className="text-cyan-400">Faculty</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -75,13 +75,13 @@ export default function Faculty() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              className="glass-panel p-6 text-left group hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon"
+              className="glass-panel p-6 text-left group hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
               aria-label={`View profile of ${faculty.name}`}
             >
-              <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-neon transition-colors">
+              <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-cyan-400 transition-colors">
                 <img src={faculty.image} alt={faculty.name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-neon transition-colors">{faculty.name}</h3>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">{faculty.name}</h3>
               <p className="text-sm text-gray-400">{faculty.role}</p>
             </motion.button>
           ))}
@@ -97,20 +97,20 @@ export default function Faculty() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedFaculty(null)}
-              className="absolute inset-0 bg-navy-dark/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-[#0B0F1A]/80 backdrop-blur-sm"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-lg bg-navy-light border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
+              className="relative w-full max-w-lg bg-[#111827] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-title"
             >
               <button
                 onClick={() => setSelectedFaculty(null)}
-                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-navy-dark/50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-neon"
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-[#0B0F1A]/50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 aria-label="Close modal"
               >
                 <X size={20} />
@@ -118,10 +118,10 @@ export default function Faculty() {
               
               <div className="p-8">
                 <div className="flex items-center gap-6 mb-6">
-                  <img src={selectedFaculty.image} alt={selectedFaculty.name} referrerPolicy="no-referrer" className="w-24 h-24 rounded-full object-cover border-2 border-neon" />
+                  <img src={selectedFaculty.image} alt={selectedFaculty.name} referrerPolicy="no-referrer" className="w-24 h-24 rounded-full object-cover border-2 border-cyan-400" />
                   <div>
                     <h2 id="modal-title" className="text-2xl font-bold text-white mb-1">{selectedFaculty.name}</h2>
-                    <p className="text-neon font-medium text-sm">{selectedFaculty.role}</p>
+                    <p className="text-cyan-400 font-medium text-sm">{selectedFaculty.role}</p>
                   </div>
                 </div>
                 
@@ -135,10 +135,10 @@ export default function Faculty() {
                     <span className="text-white font-bold">{selectedFaculty.publications}+</span>
                   </div>
                   <div className="flex gap-3">
-                    <a href="#" className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-300 hover:text-neon transition-colors" aria-label="LinkedIn Profile">
+                    <a href="#" className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-300 hover:text-cyan-400 transition-colors" aria-label="LinkedIn Profile">
                       <Linkedin size={18} />
                     </a>
-                    <a href="#" className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-300 hover:text-neon transition-colors" aria-label="Email Contact">
+                    <a href="#" className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-300 hover:text-cyan-400 transition-colors" aria-label="Email Contact">
                       <Mail size={18} />
                     </a>
                   </div>

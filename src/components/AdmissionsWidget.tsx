@@ -57,7 +57,7 @@ export default function AdmissionsWidget() {
   ];
 
   return (
-    <section id="admissions" className="py-24 bg-navy-dark relative">
+    <section id="admissions" className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -70,15 +70,15 @@ export default function AdmissionsWidget() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                Admissions <span className="text-neon">2026</span>
+                Admissions <span className="text-cyan-400">2026</span>
               </h2>
               <p className="text-gray-400 leading-relaxed mb-8">
                 Join Jain College of Engineering and Technology. Follow our simple 4-step process to secure your seat in our cutting-edge programs.
               </p>
               
               <div className="space-y-4">
-                <div className="glass-panel p-5 flex items-center gap-4 border-l-4 border-l-warm">
-                  <div className="p-3 bg-warm/10 rounded-full text-warm">
+                <div className="glass-panel p-5 flex items-center gap-4 border-l-4 border-l-pink-400">
+                  <div className="p-3 bg-pink-400/10 rounded-full text-pink-400">
                     <CalendarClock size={24} />
                   </div>
                   <div>
@@ -112,7 +112,7 @@ export default function AdmissionsWidget() {
             >
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-2xl font-bold text-white">Application Status</h3>
-                <span className="text-xs font-bold text-neon bg-neon/10 px-3 py-1 rounded-full border border-neon/20">
+                <span className="text-xs font-bold text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full border border-cyan-400/20">
                   Step {activeStep} of 4
                 </span>
               </div>
@@ -134,15 +134,15 @@ export default function AdmissionsWidget() {
                       >
                         {/* Step Indicator */}
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 z-10 transition-colors duration-300 ${
-                          isActive ? 'bg-neon text-navy-dark shadow-[0_0_15px_rgba(0,229,255,0.4)]' : 
-                          isCompleted ? 'bg-warm text-navy-dark' : 'bg-navy-dark border-2 border-white/20 text-gray-400'
+                          isActive ? 'bg-cyan-400 text-[#0B0F1A] shadow-[0_0_15px_rgba(6,182,212,0.4)]' : 
+                          isCompleted ? 'bg-pink-400 text-[#0B0F1A]' : 'bg-[#0B0F1A] border-2 border-white/20 text-gray-400'
                         }`}>
                           {isCompleted ? <CheckCircle2 size={20} /> : <span className="font-bold">{step.id}</span>}
                         </div>
                         
                         {/* Step Content */}
                         <div className={`pt-2 w-full ${isActive ? 'scale-[1.02] origin-left transition-transform duration-300' : ''}`}>
-                          <h4 className={`text-lg font-bold mb-1 ${isActive ? 'text-neon' : 'text-white'}`}>
+                          <h4 className={`text-lg font-bold mb-1 ${isActive ? 'text-cyan-400' : 'text-white'}`}>
                             {step.title}
                           </h4>
                           <p className="text-sm text-gray-400">{step.desc}</p>
@@ -166,7 +166,7 @@ export default function AdmissionsWidget() {
                                           value={percentage}
                                           onChange={(e) => setPercentage(e.target.value)}
                                           placeholder="e.g. 75"
-                                          className="w-full bg-navy-dark/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon transition-colors"
+                                          className="w-full bg-[#0B0F1A]/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400 transition-colors"
                                         />
                                         {percentage && parseFloat(percentage) < 60 && (
                                           <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12}/> Minimum 60% required.</p>
@@ -176,11 +176,11 @@ export default function AdmissionsWidget() {
                                         <label className="block text-sm font-medium text-gray-300 mb-2">Required Subjects Passed</label>
                                         <div className="flex gap-4">
                                           <label className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
-                                            <input type="checkbox" checked={hasPhysics} onChange={(e) => setHasPhysics(e.target.checked)} className="rounded border-white/20 bg-navy-dark/50 text-neon focus:ring-neon focus:ring-offset-navy-dark" />
+                                            <input type="checkbox" checked={hasPhysics} onChange={(e) => setHasPhysics(e.target.checked)} className="rounded border-white/20 bg-[#0B0F1A]/50 text-cyan-400 focus:ring-cyan-400 focus:ring-offset-[#0B0F1A]" />
                                             Physics
                                           </label>
                                           <label className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
-                                            <input type="checkbox" checked={hasMath} onChange={(e) => setHasMath(e.target.checked)} className="rounded border-white/20 bg-navy-dark/50 text-neon focus:ring-neon focus:ring-offset-navy-dark" />
+                                            <input type="checkbox" checked={hasMath} onChange={(e) => setHasMath(e.target.checked)} className="rounded border-white/20 bg-[#0B0F1A]/50 text-cyan-400 focus:ring-cyan-400 focus:ring-offset-[#0B0F1A]" />
                                             Mathematics
                                           </label>
                                         </div>
@@ -195,7 +195,7 @@ export default function AdmissionsWidget() {
                                         <select 
                                           value={program}
                                           onChange={(e) => { setProgram(e.target.value); setSpecialization(''); }}
-                                          className="w-full bg-navy-dark/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon transition-colors appearance-none"
+                                          className="w-full bg-[#0B0F1A]/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400 transition-colors appearance-none"
                                         >
                                           <option value="">-- Choose Program --</option>
                                           {Object.keys(programs).map(p => <option key={p} value={p}>{p}</option>)}
@@ -207,7 +207,7 @@ export default function AdmissionsWidget() {
                                           <select 
                                             value={specialization}
                                             onChange={(e) => setSpecialization(e.target.value)}
-                                            className="w-full bg-navy-dark/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon transition-colors appearance-none"
+                                            className="w-full bg-[#0B0F1A]/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400 transition-colors appearance-none"
                                           >
                                             <option value="">-- Choose Specialization --</option>
                                             {programs[program as keyof typeof programs].map(s => <option key={s} value={s}>{s}</option>)}
@@ -227,8 +227,8 @@ export default function AdmissionsWidget() {
 
                                   <div className="flex items-center justify-between mt-2 pt-4 border-t border-white/10">
                                     <p className="text-xs text-gray-400">
-                                      {step.id === 1 && (step1Valid ? <span className="text-neon flex items-center gap-1"><CheckCircle2 size={14}/> Eligible to apply</span> : "Complete fields to check eligibility")}
-                                      {step.id === 2 && (step2Valid ? <span className="text-neon flex items-center gap-1"><CheckCircle2 size={14}/> Program selected</span> : "Select program and specialization")}
+                                      {step.id === 1 && (step1Valid ? <span className="text-cyan-400 flex items-center gap-1"><CheckCircle2 size={14}/> Eligible to apply</span> : "Complete fields to check eligibility")}
+                                      {step.id === 2 && (step2Valid ? <span className="text-cyan-400 flex items-center gap-1"><CheckCircle2 size={14}/> Program selected</span> : "Select program and specialization")}
                                     </p>
                                     <div className="flex items-center gap-3 ml-4">
                                       {step.id >= 2 && (

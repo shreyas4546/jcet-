@@ -1,5 +1,8 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
+import { BentoGrid } from './ui/BentoGrid';
+import { BentoItem } from './ui/BentoItem';
+import { Code, Users, Trophy, Music, Lightbulb } from 'lucide-react';
 
 export default function CampusLife() {
   const ref = useRef<HTMLElement>(null);
@@ -15,36 +18,41 @@ export default function CampusLife() {
       title: 'Hackathons & Tech Fests',
       description: '24-hour coding challenges and technology showcases.',
       image: 'https://picsum.photos/seed/hackathon/800/800',
-      className: 'md:col-span-2 md:row-span-2 min-h-[300px] md:min-h-0',
+      className: 'md:col-span-2 md:row-span-2',
+      icon: <Code className="h-4 w-4 text-cyan-400" />,
     },
     {
       title: 'Clubs & Societies',
       description: 'Join over 20+ technical and cultural clubs.',
       image: 'https://picsum.photos/seed/clubs/800/600',
-      className: 'md:col-span-1 md:row-span-1 min-h-[250px] md:min-h-0',
+      className: 'md:col-span-1 md:row-span-1',
+      icon: <Users className="h-4 w-4 text-pink-400" />,
     },
     {
       title: 'Sports & Athletics',
       description: 'State-of-the-art sports facilities and tournaments.',
       image: 'https://picsum.photos/seed/sports/800/600',
-      className: 'md:col-span-1 md:row-span-1 min-h-[250px] md:min-h-0',
+      className: 'md:col-span-1 md:row-span-1',
+      icon: <Trophy className="h-4 w-4 text-blue-400" />,
     },
     {
       title: 'Cultural Events',
       description: 'Annual fests celebrating art, music, and dance.',
       image: 'https://picsum.photos/seed/cultural/800/600',
-      className: 'md:col-span-1 md:row-span-1 min-h-[250px] md:min-h-0',
+      className: 'md:col-span-1 md:row-span-1',
+      icon: <Music className="h-4 w-4 text-purple-400" />,
     },
     {
       title: 'Workshops & Seminars',
       description: 'Hands-on learning with industry experts.',
       image: 'https://picsum.photos/seed/workshops/800/600',
-      className: 'md:col-span-2 md:row-span-1 min-h-[250px] md:min-h-0',
+      className: 'md:col-span-2 md:row-span-1',
+      icon: <Lightbulb className="h-4 w-4 text-yellow-400" />,
     }
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-[#001a38] relative overflow-hidden">
+    <section ref={ref} className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
       {/* Parallax Background */}
       <motion.div 
         className="absolute inset-0 z-0 pointer-events-none"
@@ -53,10 +61,10 @@ export default function CampusLife() {
         <img 
           src="https://picsum.photos/seed/campus-life-bg/1920/1080" 
           alt="Campus Life Background" 
-          className="w-full h-[150%] object-cover opacity-10"
+          className="w-full h-[150%] object-cover opacity-5"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-[#001a38]/80" />
+        <div className="absolute inset-0 bg-[#0B0F1A]/80" />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -81,35 +89,19 @@ export default function CampusLife() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:auto-rows-[280px]">
+        <BentoGrid className="max-w-7xl mx-auto">
           {activities.map((activity, index) => (
-            <motion.div
+            <BentoItem
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              className={`group relative overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-cyan-500/20 transition-shadow ${activity.className}`}
-            >
-              <img
-                src={activity.image}
-                alt={activity.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001a38] via-[#001a38]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
-              
-              <div className="absolute inset-0 p-6 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                  {activity.title}
-                </h3>
-                <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  {activity.description}
-                </p>
-              </div>
-            </motion.div>
+              title={activity.title}
+              description={activity.description}
+              header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-white/5 to-white/10" />}
+              icon={activity.icon}
+              image={activity.image}
+              className={activity.className}
+            />
           ))}
-        </div>
+        </BentoGrid>
       </div>
     </section>
   );

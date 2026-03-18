@@ -64,7 +64,7 @@ export default function Gallery() {
   };
 
   return (
-    <section className="py-24 bg-navy-dark relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2
@@ -72,9 +72,9 @@ export default function Gallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold mb-4 text-white"
           >
-            Campus <span className="text-neon">Gallery</span>
+            Campus <span className="text-cyan-400">Gallery</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function Gallery() {
                 />
                 
                 {/* Overlay Info */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/80 via-transparent to-transparent flex flex-col justify-end p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A]/80 via-transparent to-transparent flex flex-col justify-end p-8">
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ export default function Gallery() {
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{IMAGES[currentIndex].alt}</h3>
                     <button 
                       onClick={() => setIsLightboxOpen(true)}
-                      className="flex items-center gap-2 text-neon text-sm font-medium hover:underline"
+                      className="flex items-center gap-2 text-cyan-400 text-sm font-medium hover:underline"
                     >
                       <Maximize2 size={16} /> View Fullscreen
                     </button>
@@ -143,14 +143,14 @@ export default function Gallery() {
             <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <button
                 onClick={prevSlide}
-                className="p-3 rounded-full bg-navy-dark/50 backdrop-blur-md text-white border border-white/10 hover:bg-neon hover:text-navy-dark transition-all pointer-events-auto"
+                className="p-3 rounded-full bg-[#0B0F1A]/50 backdrop-blur-md text-white border border-white/10 hover:bg-cyan-400 hover:text-[#0B0F1A] transition-all pointer-events-auto"
                 aria-label="Previous image"
               >
                 <ChevronLeft size={24} />
               </button>
               <button
                 onClick={nextSlide}
-                className="p-3 rounded-full bg-navy-dark/50 backdrop-blur-md text-white border border-white/10 hover:bg-neon hover:text-navy-dark transition-all pointer-events-auto"
+                className="p-3 rounded-full bg-[#0B0F1A]/50 backdrop-blur-md text-white border border-white/10 hover:bg-cyan-400 hover:text-[#0B0F1A] transition-all pointer-events-auto"
                 aria-label="Next image"
               >
                 <ChevronRight size={24} />
@@ -165,7 +165,7 @@ export default function Gallery() {
                 key={img.id}
                 onClick={() => goToSlide(index)}
                 className={`relative shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                  index === currentIndex ? 'border-neon scale-110 shadow-[0_0_15px_rgba(0,229,255,0.3)]' : 'border-transparent opacity-50 hover:opacity-100'
+                  index === currentIndex ? 'border-cyan-400 scale-110 shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'border-transparent opacity-50 hover:opacity-100'
                 }`}
               >
                 <img
@@ -189,7 +189,7 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsLightboxOpen(false)}
-              className="absolute inset-0 bg-navy-dark/98 backdrop-blur-xl"
+              className="absolute inset-0 bg-[#0B0F1A]/98 backdrop-blur-xl"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

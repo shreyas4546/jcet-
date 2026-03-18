@@ -26,8 +26,8 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-navy-dark/95 backdrop-blur-md shadow-lg py-4 border-b border-white/10' : 'bg-transparent py-6'
+      className={`fixed top-0 w-full z-50 transition-all duration-300 mix-blend-difference ${
+        isScrolled ? 'bg-[#0B0F1A]/95 backdrop-blur-md shadow-lg py-4 border-b border-white/10' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
@@ -39,7 +39,7 @@ export default function Navbar() {
         <ul className="hidden md:flex gap-8 text-white">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a href={link.href} className="hover:text-neon transition-colors font-medium">
+              <a href={link.href} className="hover:text-cyan-400 transition-colors font-medium">
                 {link.name}
               </a>
             </li>
@@ -64,14 +64,14 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy-dark border-t border-white/10 mt-4 overflow-hidden absolute w-full"
+            className="md:hidden bg-[#0B0F1A] border-t border-white/10 mt-4 overflow-hidden absolute w-full"
           >
             <ul className="flex flex-col px-6 py-4 gap-4 text-white">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    className="block hover:text-neon transition-colors py-2 font-medium"
+                    className="block hover:text-cyan-400 transition-colors py-2 font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.name}

@@ -30,7 +30,7 @@ export default function StudentSpotlight() {
   ];
 
   return (
-    <section className="py-24 bg-navy-light/20 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2
@@ -38,16 +38,16 @@ export default function StudentSpotlight() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold mb-4 text-white"
           >
-            Student <span className="text-neon">Spotlight</span>
+            Student <span className="text-cyan-400">Spotlight</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto"
+            className="text-gray-300 max-w-2xl mx-auto"
           >
             Hear directly from our students about their journey, projects, and life at JCET.
           </motion.p>
@@ -72,10 +72,10 @@ export default function StudentSpotlight() {
               />
               
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
               {/* Play Button */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-neon/90 rounded-full flex items-center justify-center text-navy-dark shadow-[0_0_20px_rgba(0,229,255,0.5)] group-hover:scale-110 transition-transform duration-300 z-10">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400/90 rounded-full flex items-center justify-center text-[#0B0F1A] shadow-[0_0_20px_rgba(6,182,212,0.5)] group-hover:scale-110 transition-transform duration-300 z-10">
                 <Play size={24} className="ml-1" fill="currentColor" />
               </div>
 
@@ -84,7 +84,7 @@ export default function StudentSpotlight() {
                 <p className="text-lg font-bold text-white mb-2 italic leading-tight">
                   {spotlight.quote}
                 </p>
-                <h3 className="text-neon font-bold text-sm">{spotlight.name}</h3>
+                <h3 className="text-cyan-400 font-bold text-sm">{spotlight.name}</h3>
                 <p className="text-xs text-gray-400 mb-4">{spotlight.role}</p>
                 
                 {/* Transcript Link */}

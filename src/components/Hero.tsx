@@ -2,6 +2,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Download, ChevronRight } from 'lucide-react';
 import { useState, useRef } from 'react';
 import MagneticButton from './ui/magnetic-button-v1.0.0';
+import { ABExperiment, ABVariant, useABTest } from './ABTesting';
 
 interface HeroProps {
   setHighlightWhy?: (val: boolean) => void;
@@ -10,6 +11,7 @@ interface HeroProps {
 export default function Hero({ setHighlightWhy }: HeroProps) {
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
   const ref = useRef<HTMLElement>(null);
+  const { trackEvent } = useABTest();
   
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -26,8 +28,13 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
     { id: 6, x: '60%', y: '85%', title: 'MBA', desc: 'Develop leadership and strategic management skills.' },
   ];
 
+  const handleApplyNow = () => {
+    trackEvent('hero_headline_experiment', 'apply_now_click');
+    document.getElementById('admissions')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-navy-dark">
+    <section ref={ref} className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black">
       {/* Parallax Background */}
       <motion.div 
         className="absolute inset-0 z-0 pointer-events-none"
@@ -36,14 +43,15 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
         <img 
           src="https://picsum.photos/seed/jcet-hero/1920/1080" 
           alt="JCET Campus" 
-          className="w-full h-[150%] object-cover opacity-20"
+          className="w-full h-[150%] object-cover opacity-10"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-navy-dark/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F1A]/90 via-[#111827]/80 to-black/90" />
       </motion.div>
 
       {/* Background Gradient / Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon/10 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
@@ -54,12 +62,20 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-white">
-              Engineering the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-blue-500">
-                Future at JCET
-              </span>
-            </h1>
+            <ABExperiment id="hero_headline_experiment">
+              <ABVariant name="original">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">
+                  Engineering the <br />
+                  Future at JCET
+                </h1>
+              </ABVariant>
+              <ABVariant name="journey">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">
+                  Your Journey to <br />
+                  Excellence
+                </h1>
+              </ABVariant>
+            </ABExperiment>
             <p className="text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed">
               Innovative learning, advanced labs, and strong placements.
             </p>
@@ -71,19 +87,15 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex flex-wrap gap-4"
           >
-            <MagneticButton onClick={() => document.getElementById('admissions')?.scrollIntoView({ behavior: 'smooth' })} className="!bg-neon !text-navy-dark">
-              <span className="flex items-center gap-2">
-                Apply Now
-                <ArrowRight size={18} />
-              </span>
-            </MagneticButton>
+            <button onClick={handleApplyNow} className="btn-primary flex items-center gap-2">
+              Apply Now
+              <ArrowRight size={18} />
+            </button>
             
-            <MagneticButton onClick={() => console.log('Download brochure')}>
-              <span className="flex items-center gap-2">
-                <Download size={18} />
-                Download Brochure
-              </span>
-            </MagneticButton>
+            <button onClick={() => console.log('Download brochure')} className="btn-secondary flex items-center gap-2">
+              <Download size={18} />
+              Download Brochure
+            </button>
           </motion.div>
         </div>
 
@@ -99,11 +111,11 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
           >
             <div className="w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full border border-white/10 relative animate-[spin_60s_linear_infinite] [transform-style:preserve-3d]">
               {/* Grid lines to simulate globe */}
-              <div className="absolute inset-0 rounded-full border border-neon/20 rotate-45" />
-              <div className="absolute inset-0 rounded-full border border-neon/20 -rotate-45" />
-              <div className="absolute inset-0 rounded-full border border-neon/20 rotate-90" />
-              <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-neon/20" />
-              <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-neon/20" />
+              <div className="absolute inset-0 rounded-full border border-cyan-500/20 rotate-45" />
+              <div className="absolute inset-0 rounded-full border border-purple-500/20 -rotate-45" />
+              <div className="absolute inset-0 rounded-full border border-cyan-500/20 rotate-90" />
+              <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-purple-500/20" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-cyan-500/20" />
             </div>
           </motion.div>
 
@@ -116,10 +128,10 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
             >
               <button
                 onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
-                className="w-4 h-4 rounded-full bg-neon shadow-[0_0_15px_#00E5FF] relative group focus:outline-none focus:ring-4 focus:ring-neon/50"
+                className={`w-4 h-4 rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.8)] relative group focus:outline-none focus:ring-4 focus:ring-cyan-400/50 transition-transform ${activeHotspot === spot.id ? 'scale-125' : 'hover:scale-125'}`}
                 aria-label={`View ${spot.title}`}
               >
-                <span className="absolute inset-0 rounded-full bg-neon animate-ping opacity-75" />
+                <span className={`absolute inset-0 rounded-full bg-cyan-400 opacity-75 ${activeHotspot === spot.id ? 'animate-ping' : 'group-hover:animate-ping'}`} />
               </button>
 
               {/* Microcard */}
@@ -129,11 +141,11 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-8 left-1/2 -translate-x-1/2 w-64 glass-panel p-5 z-30 shadow-2xl border border-white/20"
+                    className="absolute top-8 left-1/2 -translate-x-1/2 w-64 glass-panel p-5 z-30"
                   >
                     <h4 className="text-base font-bold text-white mb-2">{spot.title}</h4>
                     <p className="text-sm text-gray-300 mb-4">{spot.desc}</p>
-                    <a href="#departments" className="text-xs font-semibold text-neon hover:text-white transition-colors flex items-center gap-1 uppercase tracking-wider">
+                    <a href="#departments" className="text-xs font-semibold text-cyan-400 hover:text-white transition-colors flex items-center gap-1 uppercase tracking-wider">
                       View Department <ChevronRight size={14} />
                     </a>
                   </motion.div>
@@ -154,12 +166,12 @@ export default function Hero({ setHighlightWhy }: HeroProps) {
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-3 group-hover:text-neon transition-colors">
+        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-3 group-hover:text-cyan-400 transition-colors">
           Discover Why JCET
         </span>
-        <div className="w-6 h-10 border-2 border-white/20 group-hover:border-neon/50 rounded-full flex justify-center p-1 transition-colors">
+        <div className="w-6 h-10 border-2 border-white/20 group-hover:border-cyan-400/50 rounded-full flex justify-center p-1 transition-colors">
           <motion.div 
-            className="w-1 h-2 bg-neon rounded-full" 
+            className="w-1 h-2 bg-cyan-400 rounded-full" 
             animate={{ y: [0, 16, 0] }} 
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} 
           />

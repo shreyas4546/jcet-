@@ -132,14 +132,14 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
         className={`
           magnetic-button-base
           relative px-6 py-3 rounded-lg font-semibold text-white
-          bg-navy-dark border border-white/10
+          bg-[#0B0F1A] border border-white/10
           transition-all duration-300
-          hover:border-neon hover:shadow-[0_0_20px_rgba(0,229,255,0.3)]
+          hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]
           active:scale-95
           ${className}
         `}
         style={{ 
-          backgroundColor: '#0A0F1E',
+          backgroundColor: '#0B0F1A',
           borderColor: 'rgba(255,255,255,0.1)',
         }}
       >

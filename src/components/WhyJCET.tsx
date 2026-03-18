@@ -8,28 +8,28 @@ interface WhyJCETProps {
 export default function WhyJCET({ isHighlighted }: WhyJCETProps) {
   const features = [
     {
-      icon: <Lightbulb size={32} className="text-neon" />,
+      icon: <Lightbulb size={32} className="text-cyan-400" />,
       title: 'Innovation First',
       description: 'Our curriculum is designed around hands-on projects, industry partnerships, and cutting-edge research facilities.',
     },
     {
-      icon: <Trophy size={32} className="text-warm" />,
+      icon: <Trophy size={32} className="text-pink-400" />,
       title: 'Global Recognition',
       description: 'Ranked among top engineering institutions globally, ensuring your degree carries weight anywhere in the world.',
     },
     {
-      icon: <Users size={32} className="text-blue-400" />,
+      icon: <Users size={32} className="text-purple-500" />,
       title: 'Expert Faculty',
       description: 'Learn from industry veterans and renowned researchers who bring real-world experience into the classroom.',
     },
   ];
 
   return (
-    <section id="about" className={`py-24 relative transition-all duration-700 ${isHighlighted ? 'bg-navy-dark/80 shadow-[0_0_50px_rgba(0,229,255,0.1)]' : 'bg-navy-dark'}`}>
+    <section id="about" className={`py-24 relative transition-all duration-700 ${isHighlighted ? 'bg-[#0B0F1A]/80 shadow-[0_0_50px_rgba(6,182,212,0.1)]' : 'bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black'}`}>
       {/* Highlight Overlay */}
-      <div className={`absolute inset-0 bg-neon/5 transition-opacity duration-700 pointer-events-none ${isHighlighted ? 'opacity-100' : 'opacity-0'}`} />
-      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon to-transparent transition-opacity duration-700 ${isHighlighted ? 'opacity-100' : 'opacity-0'}`} />
-      <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-neon to-transparent transition-opacity duration-700 ${isHighlighted ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute inset-0 bg-cyan-400/5 transition-opacity duration-700 pointer-events-none ${isHighlighted ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent transition-opacity duration-700 ${isHighlighted ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent transition-opacity duration-700 ${isHighlighted ? 'opacity-100' : 'opacity-0'}`} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -38,16 +38,16 @@ export default function WhyJCET({ isHighlighted }: WhyJCETProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold mb-4 text-white"
           >
-            Why Choose <span className="text-neon">JCET</span>?
+            Why Choose <span className="text-cyan-400">JCET</span>?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto"
+            className="text-gray-300 max-w-2xl mx-auto"
           >
             We don't just teach engineering; we cultivate innovators. Discover what makes our approach unique.
           </motion.p>

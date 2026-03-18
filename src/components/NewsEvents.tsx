@@ -30,7 +30,7 @@ export default function NewsEvents() {
   ];
 
   return (
-    <section id="news-events" className="py-24 bg-navy-dark relative">
+    <section id="news-events" className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2
@@ -47,7 +47,7 @@ export default function NewsEvents() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto text-lg"
+            className="text-gray-300 max-w-2xl mx-auto text-lg"
           >
             Stay updated with the latest happenings, workshops, and recruitment drives on campus.
           </motion.p>
@@ -61,7 +61,7 @@ export default function NewsEvents() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300 flex flex-col group"
+              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden shadow-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:-translate-y-2 transition-all duration-300 flex flex-col group"
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -70,8 +70,8 @@ export default function NewsEvents() {
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001a38] to-transparent opacity-60" />
-                <div className="absolute top-4 right-4 z-20 bg-cyan-500 text-navy-dark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] to-transparent opacity-60" />
+                <div className="absolute top-4 right-4 z-20 bg-cyan-400 text-[#0B0F1A] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
                   {event.category}
                 </div>
               </div>
@@ -90,7 +90,7 @@ export default function NewsEvents() {
                   {event.excerpt}
                 </p>
                 
-                <button className="w-full bg-white/10 hover:bg-cyan-500 hover:text-navy-dark text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2 group/btn">
+                <button className="w-full bg-white/10 hover:bg-cyan-400 hover:text-[#0B0F1A] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2 group/btn">
                   Read More
                   <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                 </button>
