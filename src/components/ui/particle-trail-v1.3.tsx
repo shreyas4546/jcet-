@@ -20,7 +20,7 @@ interface ParticleData {
 export const ParticleTrailV1_3 = forwardRef<ParticleTrailRef, {}>((props, ref) => {
   const MAX_PARTICLES = 18;
   const poolRef = useRef<ParticleData[]>([]);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | undefined>(undefined);
   const lastTimeRef = useRef<number>(0);
 
   // Initialize pool
@@ -58,8 +58,8 @@ export const ParticleTrailV1_3 = forwardRef<ParticleTrailRef, {}>((props, ref) =
         p.y += p.vy * (dt / 16.66);
         
         // Add slight drag
-        p.vx *= 0.95;
-        p.vy *= 0.95;
+        p.vx *= 0.94;
+        p.vy *= 0.94;
 
         const progress = p.life / p.maxLife;
         const opacity = Math.max(0, progress);
@@ -91,7 +91,7 @@ export const ParticleTrailV1_3 = forwardRef<ParticleTrailRef, {}>((props, ref) =
       
       // Random outward velocity
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.5 + Math.random() * 1.5;
+      const speed = 1.2 + Math.random() * 2.8; // Increased speed (was 0.5 + 1.5)
       p.vx = Math.cos(angle) * speed;
       p.vy = Math.sin(angle) * speed;
       

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import '../../styles/cursor-v1.3.css';
-import { ParticleTrailV1_3, ParticleTrailRef } from './particle-trail-v1.3';
+import '../../styles/cursor-v1.5.css';
 
 function lerp(start: number, end: number, amt: number) {
   return start + (end - start) * amt;
@@ -11,7 +10,12 @@ interface CustomCursorProps {
   debug?: boolean;
 }
 
-export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
+/**
+ * CustomCursorV1_5
+ * Version 1.5: Removed mouse trail (particle effect) as requested.
+ * Maintains core cursor and halo with inertia.
+ */
+export default function CustomCursorV1_5({ debug = false }: CustomCursorProps) {
   const [mounted, setMounted] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
@@ -20,14 +24,13 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const coreRef = useRef<HTMLDivElement>(null);
   const haloRef = useRef<HTMLDivElement>(null);
-  const particleTrailRef = useRef<ParticleTrailRef>(null);
 
   const requestRef = useRef<number | undefined>(undefined);
   const mousePos = useRef({ x: -100, y: -100 });
   const corePos = useRef({ x: -100, y: -100 });
   const haloPos = useRef({ x: -100, y: -100 });
-  const lastParticleTime = useRef(0);
   const isHovering = useRef(false);
+  const rafRunning = useRef(false);
 
   useEffect(() => {
     setMounted(true);
@@ -38,11 +41,13 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
     setIsReducedMotion(reducedMotion);
     setIsTouch(coarsePointer);
 
-    // Diagnostics
+    // Diagnostics Utility
     const runDiagnostics = () => {
-      let info = '--- CURSOR V1.3 DIAGNOSTICS ---\n';
+      let info = '--- CURSOR V1.5 DIAGNOSTICS ---\n';
       info += `isReducedMotion: ${reducedMotion}\n`;
       info += `isCoarsePointer: ${coarsePointer}\n`;
+      info += `RAF Running: ${rafRunning.current}\n`;
+      info += `Trail Effect: REMOVED\n`;
       
       if (cursorRef.current) {
         const style = window.getComputedStyle(cursorRef.current);
@@ -52,24 +57,43 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
         info += `  z-index: ${style.zIndex}\n`;
         info += `  pointer-events: ${style.pointerEvents}\n`;
         info += `  position: ${style.position}\n`;
+        info += `  visibility: ${style.visibility}\n`;
+
+        // Ancestor Transform Check
+        let parent = cursorRef.current.parentElement;
+        let transforms: string[] = [];
+        while (parent) {
+          const parentStyle = window.getComputedStyle(parent);
+          if (parentStyle.transform !== 'none') {
+            transforms.push(`${parent.nodeName}: ${parentStyle.transform}`);
+          }
+          parent = parent.parentElement;
+        }
+        if (transforms.length > 0) {
+          info += `Ancestor Transforms Detected:\n  ${transforms.join('\n  ')}\n`;
+        } else {
+          info += `No ancestor transforms detected.\n`;
+        }
       } else {
         info += `Cursor DOM: NOT FOUND\n`;
       }
 
-      const hasLenis = 'Lenis' in window;
-      info += `Lenis detected: ${hasLenis}\n`;
+      const hasLenis = 'Lenis' in window || !!document.querySelector('.lenis');
+      info += `Lenis/SmoothScroll detected: ${hasLenis}\n`;
 
       console.info(info);
       if (debug) setDiagnosticInfo(info);
     };
 
-    setTimeout(runDiagnostics, 1000);
+    const diagTimeout = setTimeout(runDiagnostics, 1000);
 
-    if (coarsePointer || reducedMotion) {
-      return; // Do not attach listeners or rAF
+    if (coarsePointer) {
+      return; // Do not attach listeners or rAF on touch
     }
 
-    document.body.classList.add('custom-cursor-active');
+    if (!reducedMotion) {
+      document.body.classList.add('custom-cursor-active');
+    }
 
     const onMouseMove = (e: MouseEvent) => {
       mousePos.current.x = e.clientX;
@@ -86,14 +110,17 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
     window.addEventListener('mouseover', onMouseOver, { passive: true });
 
     const update = () => {
-      // Lerp positions
-      corePos.current.x = lerp(corePos.current.x, mousePos.current.x, 0.18);
-      corePos.current.y = lerp(corePos.current.y, mousePos.current.y, 0.18);
+      rafRunning.current = true;
 
-      haloPos.current.x = lerp(haloPos.current.x, mousePos.current.x, 0.08);
-      haloPos.current.y = lerp(haloPos.current.y, mousePos.current.y, 0.08);
+      const lerpCore = reducedMotion ? 1 : 0.18;
+      const lerpHalo = reducedMotion ? 1 : 0.08;
 
-      // Apply transforms
+      corePos.current.x = lerp(corePos.current.x, mousePos.current.x, lerpCore);
+      corePos.current.y = lerp(corePos.current.y, mousePos.current.y, lerpCore);
+
+      haloPos.current.x = lerp(haloPos.current.x, mousePos.current.x, lerpHalo);
+      haloPos.current.y = lerp(haloPos.current.y, mousePos.current.y, lerpHalo);
+
       if (coreRef.current) {
         const scale = isHovering.current ? 1.35 : 1;
         coreRef.current.style.transform = `translate3d(${corePos.current.x}px, ${corePos.current.y}px, 0) scale(${scale})`;
@@ -108,52 +135,58 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
         }
       }
 
-      // Spawn particles
-      const now = Date.now();
-      if (now - lastParticleTime.current >= 30) {
-        const dx = mousePos.current.x - corePos.current.x;
-        const dy = mousePos.current.y - corePos.current.y;
-        // Only spawn if moving
-        if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-          lastParticleTime.current = now;
-          particleTrailRef.current?.spawn(corePos.current.x, corePos.current.y);
-        }
-      }
-
       requestRef.current = requestAnimationFrame(update);
     };
 
     requestRef.current = requestAnimationFrame(update);
 
     return () => {
+      clearTimeout(diagTimeout);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseover', onMouseOver);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
       document.body.classList.remove('custom-cursor-active');
+      rafRunning.current = false;
     };
-  }, []);
+  }, [debug]);
 
-  if (!mounted || isTouch || isReducedMotion) return null;
+  if (!mounted || isTouch) return null;
 
   const cursorContent = (
-    <div ref={cursorRef} className="cursor-v1-3-root">
-      <div ref={haloRef} className="cursor-v1-3-halo" />
-      <div ref={coreRef} className="cursor-v1-3-core" />
-      <ParticleTrailV1_3 ref={particleTrailRef} />
+    <div 
+      ref={cursorRef} 
+      className="cursor-v1-5-root"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 999999,
+        willChange: 'transform, opacity',
+        opacity: 1,
+        display: 'block',
+        visibility: 'visible'
+      }}
+    >
+      <div ref={haloRef} className="cursor-v1-5-halo" />
+      {!isReducedMotion && <div ref={coreRef} className="cursor-v1-5-core" />}
       
       {debug && diagnosticInfo && (
         <div style={{
           position: 'fixed',
           top: '10px',
           right: '10px',
-          background: 'rgba(0,0,0,0.8)',
+          background: 'rgba(0,0,0,0.85)',
           color: '#0f0',
-          padding: '10px',
+          padding: '12px',
           fontFamily: 'monospace',
-          fontSize: '10px',
+          fontSize: '11px',
           zIndex: 9999999,
           pointerEvents: 'none',
-          whiteSpace: 'pre'
+          whiteSpace: 'pre',
+          border: '1px solid #0f0',
+          borderRadius: '4px',
+          boxShadow: '0 0 10px rgba(0,255,0,0.2)'
         }}>
           {diagnosticInfo}
         </div>

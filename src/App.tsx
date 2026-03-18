@@ -29,14 +29,14 @@ import AnimatedGradientBackground from './components/background/animated-gradien
 import { ABTestProvider } from './components/ABTesting';
 import ABTestDashboard from './components/ABTestDashboard';
 import ScrollToTop from './components/ScrollToTop';
-import CustomCursorV1_3 from './components/ui/custom-cursor-v1.3';
+import CustomCursorV1_3_1 from './components/ui/custom-cursor-v1.3.1';
 
 export default function App() {
   const [highlightWhy, setHighlightWhy] = useState(false);
 
   return (
     <ABTestProvider>
-      <CustomCursorV1_3 debug={true} />
+      <CustomCursorV1_3_1 />
       <SmoothScroll>
         <AnimatedGradientBackground>
           <div className="min-h-screen text-white font-body selection:bg-cyan-400 selection:text-[#0B0F1A]">

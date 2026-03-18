@@ -1,0 +1,69 @@
+:root {
+  --cursor-size: 10px;
+  --cursor-halo-size: 56px;
+  --cursor-color: rgba(124,58,237,1);    /* purple */
+  --cursor-accent: rgba(6,182,212,0.95);  /* cyan */
+  --cursor-pink: rgba(244,114,182,0.95);  /* pink */
+  --cursor-glow: 24px;
+  --cursor-hover-color: var(--cursor-pink);
+}
+
+/* Hide default cursor globally when feature active */
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Ensure keyboard focus remains visible and accessible */
+body.custom-cursor-active *:focus-visible {
+  outline: 2px solid var(--cursor-accent) !important;
+  outline-offset: 2px !important;
+  cursor: auto !important;
+}
+
+.cursor-v1-5-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 999999;
+  /* Ensure visibility */
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.cursor-v1-5-halo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--cursor-halo-size);
+  height: var(--cursor-halo-size);
+  border-radius: 50%;
+  background-color: var(--cursor-color);
+  filter: blur(var(--cursor-glow));
+  /* Center the element */
+  margin-left: calc(var(--cursor-halo-size) / -2);
+  margin-top: calc(var(--cursor-halo-size) / -2);
+  will-change: transform, background-color, opacity;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.4;
+}
+
+.cursor-v1-5-halo.hovering {
+  background-color: var(--cursor-hover-color);
+  opacity: 0.65;
+}
+
+.cursor-v1-5-core {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 50%;
+  background-color: white;
+  margin-left: calc(var(--cursor-size) / -2);
+  margin-top: calc(var(--cursor-size) / -2);
+  will-change: transform;
+}

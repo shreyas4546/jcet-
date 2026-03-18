@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import '../../styles/cursor-v1.3.css';
-import { ParticleTrailV1_3, ParticleTrailRef } from './particle-trail-v1.3';
 
 function lerp(start: number, end: number, amt: number) {
   return start + (end - start) * amt;
@@ -11,7 +10,11 @@ interface CustomCursorProps {
   debug?: boolean;
 }
 
-export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
+/**
+ * CustomCursorV1_3_1
+ * Version 1.3.1: Patched version of v1.3 with particle trail removed.
+ */
+export default function CustomCursorV1_3_1({ debug = false }: CustomCursorProps) {
   const [mounted, setMounted] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
@@ -20,13 +23,11 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const coreRef = useRef<HTMLDivElement>(null);
   const haloRef = useRef<HTMLDivElement>(null);
-  const particleTrailRef = useRef<ParticleTrailRef>(null);
 
   const requestRef = useRef<number | undefined>(undefined);
   const mousePos = useRef({ x: -100, y: -100 });
   const corePos = useRef({ x: -100, y: -100 });
   const haloPos = useRef({ x: -100, y: -100 });
-  const lastParticleTime = useRef(0);
   const isHovering = useRef(false);
 
   useEffect(() => {
@@ -40,9 +41,10 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
 
     // Diagnostics
     const runDiagnostics = () => {
-      let info = '--- CURSOR V1.3 DIAGNOSTICS ---\n';
+      let info = '--- CURSOR V1.3.1 DIAGNOSTICS ---\n';
       info += `isReducedMotion: ${reducedMotion}\n`;
       info += `isCoarsePointer: ${coarsePointer}\n`;
+      info += `Trail Effect: REMOVED\n`;
       
       if (cursorRef.current) {
         const style = window.getComputedStyle(cursorRef.current);
@@ -108,18 +110,6 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
         }
       }
 
-      // Spawn particles
-      const now = Date.now();
-      if (now - lastParticleTime.current >= 30) {
-        const dx = mousePos.current.x - corePos.current.x;
-        const dy = mousePos.current.y - corePos.current.y;
-        // Only spawn if moving
-        if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-          lastParticleTime.current = now;
-          particleTrailRef.current?.spawn(corePos.current.x, corePos.current.y);
-        }
-      }
-
       requestRef.current = requestAnimationFrame(update);
     };
 
@@ -131,7 +121,7 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
       document.body.classList.remove('custom-cursor-active');
     };
-  }, []);
+  }, [debug]);
 
   if (!mounted || isTouch || isReducedMotion) return null;
 
@@ -139,7 +129,6 @@ export default function CustomCursorV1_3({ debug = false }: CustomCursorProps) {
     <div ref={cursorRef} className="cursor-v1-3-root">
       <div ref={haloRef} className="cursor-v1-3-halo" />
       <div ref={coreRef} className="cursor-v1-3-core" />
-      <ParticleTrailV1_3 ref={particleTrailRef} />
       
       {debug && diagnosticInfo && (
         <div style={{

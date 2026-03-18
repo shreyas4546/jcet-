@@ -23,7 +23,7 @@ export default function CustomCursorV1_1({ debug = false }: CustomCursorProps) {
   const [diagnosticInfo, setDiagnosticInfo] = useState<string>('');
 
   const cursorRef = useRef<HTMLDivElement>(null);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | undefined>(undefined);
   const mousePos = useRef({ x: -100, y: -100 });
   const currentPos = useRef({ x: -100, y: -100 });
   const particleId = useRef(0);

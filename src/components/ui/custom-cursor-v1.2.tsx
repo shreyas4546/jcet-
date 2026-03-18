@@ -16,7 +16,7 @@ export default function CustomCursorV1_2() {
   const haloRef = useRef<HTMLDivElement>(null);
   const particleTrailRef = useRef<ParticleTrailRef>(null);
 
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | undefined>(undefined);
   const mousePos = useRef({ x: -100, y: -100 });
   const corePos = useRef({ x: -100, y: -100 });
   const haloPos = useRef({ x: -100, y: -100 });
