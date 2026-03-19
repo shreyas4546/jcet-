@@ -1,59 +1,35 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import MagneticCard from './ui/magnetic-card-v1.0.0';
 
 export default function Departments() {
   const departments = [
-    {
-      name: 'Computer Science Engineering',
-      description: 'Learn software development, algorithms, and computing systems.',
-      image: 'https://picsum.photos/seed/cse/800/600',
-    },
-    {
-      name: 'Artificial Intelligence and Machine Learning',
-      description: 'Explore neural networks, data science, and intelligent systems.',
-      image: 'https://picsum.photos/seed/aiml/800/600',
-    },
-    {
-      name: 'Mechanical Engineering',
-      description: 'Design, analyze, and manufacture advanced mechanical systems.',
-      image: 'https://picsum.photos/seed/mech/800/600',
-    },
-    {
-      name: 'Civil Engineering',
-      description: 'Build sustainable infrastructure, smart cities, and structural designs.',
-      image: 'https://picsum.photos/seed/civil/800/600',
-    },
-    {
-      name: 'Electronics Engineering',
-      description: 'Innovate with microprocessors, embedded systems, and IoT devices.',
-      image: 'https://picsum.photos/seed/ece/800/600',
-    },
-    {
-      name: 'MBA',
-      description: 'Develop leadership, management, and entrepreneurial skills.',
-      image: 'https://picsum.photos/seed/mba/800/600',
-    },
+    { name: 'Computer Science Engineering', description: 'Learn software development, algorithms, and computing systems.', image: 'https://picsum.photos/seed/cse/800/600' },
+    { name: 'Artificial Intelligence and Machine Learning', description: 'Explore neural networks, data science, and intelligent systems.', image: 'https://picsum.photos/seed/aiml/800/600' },
+    { name: 'Mechanical Engineering', description: 'Design, analyze, and manufacture advanced mechanical systems.', image: 'https://picsum.photos/seed/mech/800/600' },
+    { name: 'Civil Engineering', description: 'Build sustainable infrastructure, smart cities, and structural designs.', image: 'https://picsum.photos/seed/civil/800/600' },
+    { name: 'Electronics Engineering', description: 'Innovate with microprocessors, embedded systems, and IoT devices.', image: 'https://picsum.photos/seed/ece/800/600' },
+    { name: 'MBA', description: 'Develop leadership, management, and entrepreneurial skills.', image: 'https://picsum.photos/seed/mba/800/600' },
   ];
 
   return (
-    <section id="departments" className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="departments" className="section-padding bg-surface/30">
+      <div className="section-container">
         <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-5xl font-bold mb-4 text-white"
           >
-            Academic <span className="text-cyan-400">Departments</span>
+            Academic <span className="text-gradient-purple">Departments</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-300 max-w-2xl mx-auto text-lg"
+            className="max-w-2xl mx-auto"
           >
             Specialized centers of excellence driving research, innovation, and leadership.
           </motion.p>
@@ -75,12 +51,12 @@ export default function Departments() {
                 imageSrc={dept.image}
                 className="h-full"
               >
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                <p className="text-text-muted text-sm mb-4 line-clamp-2">
                   {dept.description}
                 </p>
-                <button className="text-cyan-400 font-bold text-xs uppercase tracking-widest hover:underline">
+                <Link to="/departments" className="text-accent-primary font-bold text-xs uppercase tracking-widest hover:underline cursor-pointer">
                   Explore More
-                </button>
+                </Link>
               </MagneticCard>
             </motion.div>
           ))}

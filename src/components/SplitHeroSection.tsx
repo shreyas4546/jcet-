@@ -5,7 +5,7 @@ export default function SplitHeroSection() {
     <section className="bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black text-white py-24 relative overflow-hidden">
       {/* Glassmorphism background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-500/20 blur-[100px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-500/20 blur-[100px] rounded-full" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyan-400/20 blur-[100px] rounded-full" />
       </div>
 
@@ -16,7 +16,7 @@ export default function SplitHeroSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-5xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">
+          <h2 className="text-5xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-cyan-400">
             Engineering the Future at JCET
           </h2>
           <p className="mt-6 text-gray-300 text-lg">

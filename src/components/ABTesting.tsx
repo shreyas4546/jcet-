@@ -91,7 +91,7 @@ interface ABExperimentProps {
 export const ABExperiment: React.FC<ABExperimentProps> = ({ id, children }) => {
   const { getVariant } = useABTest();
   const variants = React.Children.map(children, child => child.props.name) || [];
-  const [assignedVariant, setAssignedVariant] = useState<string | null>(null);
+  const [assignedVariant, setAssignedVariant] = useState<string>(() => getVariant(id, variants));
 
   useEffect(() => {
     setAssignedVariant(getVariant(id, variants));

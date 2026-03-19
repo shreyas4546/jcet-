@@ -3,14 +3,12 @@ import { Briefcase, TrendingUp, Users } from 'lucide-react';
 
 export default function Placements() {
   const stats = [
-    { label: 'Highest Package', value: '45 LPA', icon: <TrendingUp size={24} className="text-cyan-400" /> },
-    { label: 'Average Package', value: '12 LPA', icon: <Briefcase size={24} className="text-pink-400" /> },
-    { label: 'Placement Rate', value: '98%', icon: <Users size={24} className="text-purple-500" /> },
+    { label: 'Highest Package', value: '45 LPA', icon: <TrendingUp size={24} className="text-accent-primary" /> },
+    { label: 'Average Package', value: '12 LPA', icon: <Briefcase size={24} className="text-accent-pink" /> },
+    { label: 'Placement Rate', value: '98%', icon: <Users size={24} className="text-accent-secondary" /> },
   ];
 
-  const companies = [
-    'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple', 'Netflix', 'Tesla', 'SpaceX'
-  ];
+  const companies = ['Google', 'Microsoft', 'Amazon', 'Meta', 'Apple', 'Netflix', 'Tesla', 'SpaceX'];
 
   const timeline = [
     { year: '2025', company: 'Google', role: 'Software Engineer', package: '45 LPA', student: 'Aarav Sharma' },
@@ -19,98 +17,78 @@ export default function Placements() {
   ];
 
   return (
-    <section id="placements" className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="placements" className="section-padding relative overflow-hidden">
+      <div className="section-container">
         <div className="text-center mb-16">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold mb-4 text-white"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            Stellar <span className="text-cyan-400">Placements</span>
+            Stellar <span className="text-gradient-cyan">Placements</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="max-w-2xl mx-auto"
           >
             Our students are recruited by the world's leading technology companies.
           </motion.p>
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              className="glass-panel p-8 text-center group hover:border-cyan-400/50 transition-colors"
+            <motion.div key={index}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+              className="glass-card p-8 text-center glass-card-hover"
             >
               <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 {stat.icon}
               </div>
-              <h3 className="text-4xl font-extrabold text-white mb-2">{stat.value}</h3>
-              <p className="text-gray-400 font-medium uppercase tracking-wider text-sm">{stat.label}</p>
+              <h3 className="text-4xl font-extrabold text-text-heading mb-2">{stat.value}</h3>
+              <p className="text-text-muted font-medium uppercase tracking-wider text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Live Timeline & Marquee */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left: Marquee */}
           <div className="lg:col-span-6 overflow-hidden relative">
-            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0B0F1A] to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0B0F1A] to-transparent z-10" />
-            
-            <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8 text-center lg:text-left">Top Recruiters</h4>
-            
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-base to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-base to-transparent z-10" />
+            <h4 className="text-sm font-bold text-text-muted uppercase tracking-widest mb-8 text-center lg:text-left">Top Recruiters</h4>
             <div className="flex gap-8 animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-              {/* Duplicate for seamless loop */}
               {[...companies, ...companies].map((company, index) => (
-                <div key={index} className="px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-bold text-xl flex-shrink-0">
+                <div key={index} className="px-6 py-3 rounded-lg bg-surface/60 border border-white/[0.08] text-text-primary font-bold text-xl flex-shrink-0">
                   {company}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Timeline */}
           <div className="lg:col-span-6">
-            <h4 className="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-8">Recent Highlights</h4>
+            <h4 className="text-sm font-bold text-accent-primary uppercase tracking-widest mb-8">Recent Highlights</h4>
             <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
               {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                <motion.div key={index}
+                  initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
                   className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
                 >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0B0F1A] text-cyan-400 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full group-hover:scale-150 transition-transform" />
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-base text-accent-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                    <div className="w-2 h-2 bg-accent-primary rounded-full group-hover:scale-150 transition-transform" />
                   </div>
-                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-4 group-hover:border-cyan-400/30 transition-colors">
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-4 group-hover:border-accent-primary/30 transition-colors">
                     <div className="flex items-center justify-between mb-1">
-                      <h5 className="font-bold text-white">{item.company}</h5>
-                      <span className="text-xs font-bold text-pink-400 bg-pink-400/10 px-2 py-1 rounded">{item.package}</span>
+                      <h5 className="font-bold text-text-heading">{item.company}</h5>
+                      <span className="text-xs font-bold text-accent-pink bg-accent-pink/10 px-2 py-1 rounded">{item.package}</span>
                     </div>
-                    <p className="text-sm text-gray-300">{item.role}</p>
-                    <p className="text-xs text-gray-500 mt-2">{item.student} • Class of {item.year}</p>
+                    <p className="text-sm text-text-muted">{item.role}</p>
+                    <p className="text-xs text-subtle mt-2">{item.student} · Class of {item.year}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>

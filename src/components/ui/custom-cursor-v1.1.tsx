@@ -123,7 +123,7 @@ export default function CustomCursorV1_1({ debug = false }: CustomCursorProps) {
               id: particleId.current++,
               x: currentPos.current.x,
               y: currentPos.current.y,
-              color: Math.random() > 0.5 ? 'bg-purple-400' : 'bg-cyan-400',
+              color: Math.random() > 0.5 ? 'bg-sky-400' : 'bg-cyan-400',
               createdAt: now
             };
             const next = [...prev, newP];

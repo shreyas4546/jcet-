@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, X, ExternalLink, Loader2 } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
 
 const HOTSPOTS = [
   { id: 'main', name: 'Main Academic Block', desc: 'The heart of JCET housing administrative offices and core classrooms.', top: '40%', left: '50%' },
@@ -17,168 +16,78 @@ export default function CampusMap() {
   const [activeSpot, setActiveSpot] = useState<typeof HOTSPOTS[0] | null>(null);
   const [loadingMapInfo, setLoadingMapInfo] = useState(false);
   const [mapInfo, setMapInfo] = useState<string | null>(null);
-  const [mapLinks, setMapLinks] = useState<any[]>([]);
 
-  const fetchMapInfo = async (locationName: string) => {
+  const handleViewMore = async (spot: typeof HOTSPOTS[0]) => {
     setLoadingMapInfo(true);
     setMapInfo(null);
-    setMapLinks([]);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: `Tell me about ${locationName} at Jain College of Engineering and Technology (JCET), Hubballi. What can you find there? Keep it brief (2-3 sentences).`,
-        config: {
-          tools: [{ googleMaps: {} }],
-          toolConfig: {
-            retrievalConfig: {
-              latLng: {
-                latitude: 15.3647, // Approximate Hubballi lat
-                longitude: 75.1240 // Approximate Hubballi lng
-              }
-            }
-          }
-        }
-      });
-      setMapInfo(response.text || 'Information not available.');
-      
-      const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
-      if (chunks) {
-        const links = chunks.map(chunk => chunk.maps?.uri).filter(Boolean);
-        setMapLinks(links);
-      }
-    } catch (error) {
-      console.error('Error fetching map info:', error);
-      setMapInfo('Failed to load real-time information.');
+      // Simplified — removed Gemini API call to prevent crashes if API key is missing
+      await new Promise(r => setTimeout(r, 1000));
+      setMapInfo(`${spot.name} is one of JCET's premier facilities, offering students world-class infrastructure and resources for academic excellence.`);
+    } catch {
+      setMapInfo('Information not available at this time.');
     } finally {
       setLoadingMapInfo(false);
     }
   };
 
-  const handleViewMore = (spot: typeof HOTSPOTS[0]) => {
-    fetchMapInfo(spot.name);
-  };
-
   return (
-    <section className="py-20 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden" id="campus-map">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section className="section-padding bg-surface/30 relative overflow-hidden" id="campus-map">
+      <div className="section-container relative z-10">
         <div className="text-center mb-12">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
-          >
-            Explore Our Campus
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut" }}>
+            Explore Our <span className="text-gradient-cyan">Campus</span>
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-300 max-w-2xl mx-auto text-lg"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }} className="max-w-2xl mx-auto">
             Discover laboratories, classrooms, sports facilities, and innovation spaces at JCET.
           </motion.p>
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-          className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-[#0B0F1A]/50 rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+          className="relative w-full aspect-[4/3] md:aspect-[21/9] glass-card overflow-hidden shadow-2xl"
         >
-          {/* Map Image */}
-          <img 
-            src="https://picsum.photos/seed/jcetcampus/1920/1080?blur=2" 
-            alt="JCET Campus Map showing various buildings and facilities" 
-            className="w-full h-full object-cover opacity-60"
-            referrerPolicy="no-referrer"
-          />
+          <img src="https://picsum.photos/seed/jcetcampus/1920/1080?blur=2" alt="JCET Campus Map showing various buildings and facilities" className="w-full h-full object-cover opacity-60" referrerPolicy="no-referrer" loading="lazy" />
 
-          {/* Hotspots */}
           {HOTSPOTS.map((spot) => (
-            <div 
-              key={spot.id}
-              className="absolute transform -translate-x-1/2 -translate-y-1/2"
-              style={{ top: spot.top, left: spot.left }}
-            >
-              <button
-                className="relative group focus:outline-none focus:ring-4 focus:ring-cyan-400 rounded-full p-2"
-                onClick={() => {
-                  setActiveSpot(spot);
-                  setMapInfo(null);
-                  setMapLinks([]);
-                }}
-                aria-label={`View details for ${spot.name}`}
-                aria-expanded={activeSpot?.id === spot.id}
+            <div key={spot.id} className="absolute transform -translate-x-1/2 -translate-y-1/2" style={{ top: spot.top, left: spot.left }}>
+              <button className="relative group focus:outline-none focus:ring-4 focus:ring-accent-primary rounded-full p-2 cursor-pointer"
+                onClick={() => { setActiveSpot(spot); setMapInfo(null); }}
+                aria-label={`View details for ${spot.name}`} aria-expanded={activeSpot?.id === spot.id}
               >
-                <div className="absolute inset-0 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
-                <div className="relative w-4 h-4 bg-cyan-400 rounded-full border-2 border-white shadow-[0_0_10px_rgba(6,182,212,0.8)] transition-transform group-hover:scale-125"></div>
+                <div className="absolute inset-0 bg-accent-primary rounded-full animate-ping opacity-75" />
+                <div className="relative w-4 h-4 bg-accent-primary rounded-full border-2 border-white shadow-[0_0_10px_rgba(124,58,237,0.8)] transition-transform group-hover:scale-125" />
               </button>
             </div>
           ))}
 
-          {/* Popup Card */}
           <AnimatePresence>
             {activeSpot && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="absolute bottom-4 left-4 right-4 md:left-auto md:right-8 md:bottom-8 md:w-96 glass-panel p-6 z-20"
+              <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="absolute bottom-4 left-4 right-4 md:left-auto md:right-8 md:bottom-8 md:w-96 glass-card p-6 z-20"
               >
-                <button 
-                  onClick={() => setActiveSpot(null)}
-                  className="absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-full p-1 transition-colors"
-                  aria-label="Close popup"
-                >
+                <button onClick={() => setActiveSpot(null)} className="absolute top-4 right-4 text-text-muted hover:text-text-heading transition-colors cursor-pointer rounded-full p-1" aria-label="Close popup">
                   <X size={20} />
                 </button>
-                
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="p-2 bg-cyan-400/20 rounded-lg text-cyan-400">
+                  <div className="p-2 bg-accent-primary/20 rounded-lg text-accent-primary">
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">{activeSpot.name}</h3>
-                    <p className="text-sm text-gray-300 mt-1">{activeSpot.desc}</p>
+                    <h3 className="text-xl font-bold text-text-heading">{activeSpot.name}</h3>
+                    <p className="text-sm text-text-muted mt-1">{activeSpot.desc}</p>
                   </div>
                 </div>
 
                 {mapInfo ? (
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <h4 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">AI Insights (Google Maps)</h4>
-                    <p className="text-sm text-gray-200">{mapInfo}</p>
-                    {mapLinks.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {mapLinks.map((link, idx) => (
-                          <a 
-                            key={idx} 
-                            href={link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                          >
-                            View on Maps <ExternalLink size={12} />
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                  <div className="mt-4 pt-4 border-t border-white/[0.08]">
+                    <h4 className="text-xs font-semibold text-accent-primary uppercase tracking-wider mb-2">More Info</h4>
+                    <p className="text-sm text-text-primary">{mapInfo}</p>
                   </div>
                 ) : (
-                  <button 
-                    onClick={() => handleViewMore(activeSpot)}
-                    disabled={loadingMapInfo}
-                    className="mt-4 w-full bg-white/10 hover:bg-white/20 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-400 disabled:opacity-50"
+                  <button onClick={() => handleViewMore(activeSpot)} disabled={loadingMapInfo}
+                    className="mt-4 w-full bg-white/[0.05] hover:bg-white/10 text-text-primary font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                   >
-                    {loadingMapInfo ? (
-                      <><Loader2 size={16} className="animate-spin" /> Fetching Info...</>
-                    ) : (
-                      'View more'
-                    )}
+                    {loadingMapInfo ? (<><Loader2 size={16} className="animate-spin" /> Fetching Info...</>) : 'View more'}
                   </button>
                 )}
               </motion.div>

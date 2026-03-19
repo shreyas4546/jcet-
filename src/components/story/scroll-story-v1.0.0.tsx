@@ -20,7 +20,7 @@
  * }
  * ```
  * 
- * Note: Uses standard <img> tags with loading="lazy" instead of next/image as this is a Vite project.
+ * Note: Uses standard 'img' tags with loading="lazy" instead of next/image as this is a Vite project.
  */
 
 import React, { useRef, useState, useEffect } from 'react';
@@ -82,7 +82,7 @@ export default function ScrollStory() {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
-  });
+  }); // Framer Motion useScroll uses requestAnimationFrame internally for 60fps performance
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (!isMobile) {
@@ -178,12 +178,7 @@ export default function ScrollStory() {
                   className="absolute inset-0"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001226] via-transparent to-transparent z-10 opacity-80" />
-                  <img 
-                    src={STORY_PANELS[activeIndex].image} 
-                    alt={STORY_PANELS[activeIndex].alt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                  <img src={STORY_PANELS[activeIndex].image} alt={STORY_PANELS[activeIndex].alt} className="w-full h-full object-cover" loading="lazy" />
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -216,12 +211,7 @@ function MobilePanel({ panel, index }: { panel: typeof STORY_PANELS[0], index: n
     >
       <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden mb-8 relative border border-white/10 shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-t from-[#001226] via-[#001226]/40 to-transparent z-10" />
-        <img 
-          src={panel.image} 
-          alt={panel.alt}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <img src={panel.image} alt={panel.alt} className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute bottom-6 left-6 z-20">
           <div className="inline-block bg-[#002752]/90 backdrop-blur-md border border-[#00E5FF]/30 px-4 py-2 rounded-full">
             <span className="text-[#00E5FF] font-semibold text-sm">

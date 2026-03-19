@@ -17,22 +17,10 @@ export default function Gallery() {
   const [direction, setDirection] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  const nextSlide = useCallback(() => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
-  }, []);
+  const nextSlide = useCallback(() => { setDirection(1); setCurrentIndex((prev) => (prev + 1) % IMAGES.length); }, []);
+  const prevSlide = useCallback(() => { setDirection(-1); setCurrentIndex((prev) => (prev - 1 + IMAGES.length) % IMAGES.length); }, []);
+  const goToSlide = (index: number) => { setDirection(index > currentIndex ? 1 : -1); setCurrentIndex(index); };
 
-  const prevSlide = useCallback(() => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
-  }, []);
-
-  const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-  };
-
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') nextSlide();
@@ -44,94 +32,38 @@ export default function Gallery() {
   }, [nextSlide, prevSlide]);
 
   const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.95
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.95
-    })
+    enter: (direction: number) => ({ x: direction > 0 ? '100%' : '-100%', opacity: 0, scale: 0.95 }),
+    center: { zIndex: 1, x: 0, opacity: 1, scale: 1 },
+    exit: (direction: number) => ({ zIndex: 0, x: direction < 0 ? '100%' : '-100%', opacity: 0, scale: 0.95 }),
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#0B0F1A] via-[#111827] to-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="section-padding bg-surface/30 relative overflow-hidden">
+      <div className="section-container">
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold mb-4 text-white"
-          >
-            Campus <span className="text-cyan-400">Gallery</span>
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut" }}>
+            Campus <span className="text-gradient-multi">Gallery</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-gray-400 max-w-2xl mx-auto"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }} className="max-w-2xl mx-auto">
             Take a virtual tour through our world-class facilities and vibrant campus life.
           </motion.p>
         </div>
 
-        {/* Main Carousel Container */}
         <div className="relative group max-w-5xl mx-auto">
-          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden glass-panel border-white/10 shadow-2xl">
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden glass-card border-white/[0.08] shadow-2xl">
             <AnimatePresence initial={false} custom={direction} mode="popLayout">
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.4 },
-                  scale: { duration: 0.4 }
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={(_, info) => {
-                  if (info.offset.x > 100) prevSlide();
-                  else if (info.offset.x < -100) nextSlide();
-                }}
+              <motion.div key={currentIndex} custom={direction} variants={variants}
+                initial="enter" animate="center" exit="exit"
+                transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.4 }, scale: { duration: 0.4 } }}
+                drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={1}
+                onDragEnd={(_, info) => { if (info.offset.x > 100) prevSlide(); else if (info.offset.x < -100) nextSlide(); }}
                 className="absolute inset-0 cursor-grab active:cursor-grabbing"
               >
-                <img
-                  src={IMAGES[currentIndex].src}
-                  alt={IMAGES[currentIndex].alt}
-                  className="w-full h-full object-cover select-none"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Overlay Info */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A]/80 via-transparent to-transparent flex flex-col justify-end p-8">
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    key={`info-${currentIndex}`}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{IMAGES[currentIndex].alt}</h3>
-                    <button 
-                      onClick={() => setIsLightboxOpen(true)}
-                      className="flex items-center gap-2 text-cyan-400 text-sm font-medium hover:underline"
-                    >
+                <img src={IMAGES[currentIndex].src} alt={IMAGES[currentIndex].alt} className="w-full h-full object-cover select-none" referrerPolicy="no-referrer" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-base/80 via-transparent to-transparent flex flex-col justify-end p-8">
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} key={`info-${currentIndex}`} transition={{ delay: 0.2 }}>
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">{IMAGES[currentIndex].alt}</h3>
+                    <button onClick={() => setIsLightboxOpen(true)} className="flex items-center gap-2 text-accent-secondary text-sm font-medium hover:underline cursor-pointer">
                       <Maximize2 size={16} /> View Fullscreen
                     </button>
                   </motion.div>
@@ -139,80 +71,42 @@ export default function Gallery() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Desktop Navigation Arrows */}
             <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <button
-                onClick={prevSlide}
-                className="p-3 rounded-full bg-[#0B0F1A]/50 backdrop-blur-md text-white border border-white/10 hover:bg-cyan-400 hover:text-[#0B0F1A] transition-all pointer-events-auto"
-                aria-label="Previous image"
-              >
+              <button onClick={prevSlide} className="p-3 rounded-full bg-base/50 backdrop-blur-md text-text-heading border border-white/[0.08] hover:bg-accent-primary hover:text-white transition-all pointer-events-auto cursor-pointer" aria-label="Previous image">
                 <ChevronLeft size={24} />
               </button>
-              <button
-                onClick={nextSlide}
-                className="p-3 rounded-full bg-[#0B0F1A]/50 backdrop-blur-md text-white border border-white/10 hover:bg-cyan-400 hover:text-[#0B0F1A] transition-all pointer-events-auto"
-                aria-label="Next image"
-              >
+              <button onClick={nextSlide} className="p-3 rounded-full bg-base/50 backdrop-blur-md text-text-heading border border-white/[0.08] hover:bg-accent-primary hover:text-white transition-all pointer-events-auto cursor-pointer" aria-label="Next image">
                 <ChevronRight size={24} />
               </button>
             </div>
           </div>
 
-          {/* Thumbnails Strip */}
           <div className="mt-6 flex justify-center gap-3 overflow-x-auto pb-4 hide-scrollbar px-4">
             {IMAGES.map((img, index) => (
-              <button
-                key={img.id}
-                onClick={() => goToSlide(index)}
-                className={`relative shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                  index === currentIndex ? 'border-cyan-400 scale-110 shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'border-transparent opacity-50 hover:opacity-100'
+              <button key={img.id} onClick={() => goToSlide(index)}
+                className={`relative shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${
+                  index === currentIndex ? 'border-accent-primary scale-110 glow-purple' : 'border-transparent opacity-50 hover:opacity-100'
                 }`}
               >
-                <img
-                  src={img.src}
-                  alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
+                <img src={img.src} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Fullscreen Lightbox */}
       <AnimatePresence>
         {isLightboxOpen && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-12">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsLightboxOpen(false)}
-              className="absolute inset-0 bg-[#0B0F1A]/98 backdrop-blur-xl"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="relative w-full max-w-7xl max-h-[90vh] z-10"
-            >
-              <button
-                onClick={() => setIsLightboxOpen(false)}
-                className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
-                aria-label="Close fullscreen"
-              >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsLightboxOpen(false)} className="absolute inset-0 bg-base/98 backdrop-blur-xl" />
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="relative w-full max-w-7xl max-h-[90vh] z-10">
+              <button onClick={() => setIsLightboxOpen(false)} className="absolute -top-12 right-0 p-2 text-text-muted hover:text-text-heading transition-colors cursor-pointer" aria-label="Close fullscreen">
                 <X size={32} />
               </button>
-              <img
-                src={IMAGES[currentIndex].src}
-                alt={IMAGES[currentIndex].alt}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-contain max-h-[85vh] rounded-xl shadow-2xl"
-              />
+              <img src={IMAGES[currentIndex].src} alt={IMAGES[currentIndex].alt} referrerPolicy="no-referrer" className="w-full h-full object-contain max-h-[85vh] rounded-xl shadow-2xl" loading="lazy" />
               <div className="text-center mt-6">
-                <h3 className="text-xl font-bold text-white">{IMAGES[currentIndex].alt}</h3>
-                <p className="text-gray-400 text-sm mt-1">Image {currentIndex + 1} of {IMAGES.length}</p>
+                <h3 className="text-xl font-bold">{IMAGES[currentIndex].alt}</h3>
+                <p className="text-text-muted text-sm mt-1">Image {currentIndex + 1} of {IMAGES.length}</p>
               </div>
             </motion.div>
           </div>

@@ -41,7 +41,7 @@ export default function CustomCursor() {
           id: particleIdCounter.current++,
           x: e.clientX,
           y: e.clientY,
-          color: Math.random() > 0.5 ? 'bg-purple-400' : 'bg-cyan-400',
+          color: Math.random() > 0.5 ? 'bg-sky-400' : 'bg-cyan-400',
         };
 
         setParticles((prev) => {
@@ -90,7 +90,7 @@ export default function CustomCursor() {
       {/* Main Cursor */}
       <motion.div
         className={`absolute top-0 left-0 rounded-full transition-colors duration-300 ${
-          isHovering ? 'bg-purple-400 blur-md' : 'bg-cyan-400 blur-sm'
+          isHovering ? 'bg-sky-400 blur-md' : 'bg-cyan-400 blur-sm'
         }`}
         animate={{
           x: mousePos.x - (isHovering ? 16 : 8),
