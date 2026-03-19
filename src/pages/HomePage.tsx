@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import FloatingStats from '../components/FloatingStats';
+import ExperienceJCET from '../components/ExperienceJCET';
 import WhyJCET from '../components/WhyJCET';
 import Departments from '../components/Departments';
 import CampusMap from '../components/CampusMap';
@@ -16,6 +17,7 @@ export default function HomePage() {
     <>
       <Hero />
       <FloatingStats />
+      <ExperienceJCET />
       <Reveal><WhyJCET /></Reveal>
       <Reveal><Departments /></Reveal>
       <Reveal><CampusMap /></Reveal>

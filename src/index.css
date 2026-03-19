@@ -37,6 +37,27 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
+@layer base {
+  .light {
+    --color-base: #F9FAFB;
+    --color-surface: #FFFFFF;
+    --color-elevated: #F3F4F6;
+    --color-subtle: #E5E7EB;
+
+    --color-text-primary: #111827;
+    --color-text-muted: #4B5563;
+    --color-text-heading: #0B0F1A;
+
+    --color-border-default: rgba(0, 0, 0, 0.08);
+    --color-border-hover: rgba(0, 0, 0, 0.15);
+
+    /* Darker accents for light mode visibility */
+    --color-accent-secondary: #0E7490; 
+    --color-accent-secondary-hover: #155E75;
+    --color-accent-pink: #DB2777;
+    --color-accent-warm: #D97706;
+  }
+}
 
 /* ── Base Styles ────────────────────────────────────────────── */
 @layer base {
@@ -102,19 +123,26 @@
 
   /* Primary Button — Purple glow */
   .btn-primary {
-    @apply px-8 py-4 bg-accent-primary text-white hover:bg-accent-primary-hover font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.25);
+    @apply px-8 py-4 font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
+    background-color: var(--color-accent-primary);
+    color: white;
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-primary) 25%, transparent);
   }
   .btn-primary:hover {
-    box-shadow: 0 0 32px rgba(124, 58, 237, 0.45);
+    background-color: var(--color-accent-primary-hover);
+    box-shadow: 0 0 32px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
     transform: translateY(-2px);
   }
 
   /* Secondary Button — Cyan outline */
   .btn-secondary {
-    @apply px-8 py-4 bg-transparent border-2 border-accent-secondary/40 text-accent-secondary font-semibold rounded-xl hover:bg-accent-secondary/10 hover:border-accent-secondary transition-all duration-300 text-base tracking-wide cursor-pointer;
+    @apply px-8 py-4 bg-transparent font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
+    border: 2px solid color-mix(in srgb, var(--color-accent-secondary) 40%, transparent);
+    color: var(--color-accent-secondary);
   }
   .btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--color-accent-secondary) 10%, transparent);
+    border-color: var(--color-accent-secondary);
     transform: translateY(-2px);
   }
 

@@ -1,6 +1,6 @@
 import { motion, Variants } from 'motion/react';
 import { ClipboardCheck, FileText, Calendar, CheckCircle, ArrowRight, HelpCircle } from 'lucide-react';
-import { useState } from 'react';
+import AdmissionsExperience from '../components/AdmissionsExperience';
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -15,14 +15,6 @@ const timelineSteps = [
 ];
 
 export default function AdmissionsPage() {
-  const [percentage, setPercentage] = useState('');
-  const [eligible, setEligible] = useState<boolean | null>(null);
-
-  const checkEligibility = () => {
-    const pct = parseFloat(percentage);
-    setEligible(!isNaN(pct) && pct >= 45);
-  };
-
   return (
     <div className="pt-28">
       {/* Hero */}
@@ -78,47 +70,8 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      {/* Quick Eligibility Check */}
-      <section className="section-padding bg-surface/30">
-        <div className="section-container max-w-2xl">
-          <div className="text-center mb-12">
-            <h2>Quick <span className="text-gradient-cyan">Eligibility Check</span></h2>
-            <p className="mt-4">Enter your 12th grade percentage to check your eligibility instantly.</p>
-          </div>
-          <div className="glass-card p-8">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex-1">
-                <label htmlFor="percentage" className="block text-sm font-medium text-text-muted mb-2">12th Grade Percentage</label>
-                <input
-                  id="percentage"
-                  type="number"
-                  value={percentage}
-                  onChange={(e) => { setPercentage(e.target.value); setEligible(null); }}
-                  placeholder="Enter percentage (e.g. 75)"
-                  className="w-full px-4 py-3 bg-base border border-white/[0.08] rounded-xl text-text-primary placeholder:text-text-muted/50 focus:border-accent-primary focus:outline-none transition-colors"
-                />
-              </div>
-              <button
-                onClick={checkEligibility}
-                className="btn-primary self-end cursor-pointer"
-              >
-                Check
-              </button>
-            </div>
-            {eligible !== null && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`mt-6 p-4 rounded-xl border ${eligible ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}
-              >
-                {eligible
-                  ? 'You meet the eligibility criteria! Apply now to secure your seat.'
-                  : 'Minimum 45% required. Please contact admissions for special categories.'}
-              </motion.div>
-            )}
-          </div>
-        </div>
-      </section>
+      {/* Advanced Admissions Experience Widget */}
+      <AdmissionsExperience />
 
       {/* Key Dates */}
       <section className="section-padding">
