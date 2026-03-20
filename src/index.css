@@ -211,4 +211,13 @@
   .glow-pink {
     box-shadow: 0 0 30px rgba(244, 114, 182, 0.08);
   }
+
+  /* Ken Burns Animation */
+  @keyframes ken-burns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+  .animate-ken-burns {
+    animation: ken-burns 7.5s linear forwards;
+  }
 }
