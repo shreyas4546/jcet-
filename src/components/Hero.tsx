@@ -35,19 +35,12 @@ export default function Hero() {
     >
       {/* ── Ambient Background ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {/* Radial gradient base */}
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(124,58,237,0.08) 0%, transparent 60%)' }} />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 80% 40%, rgba(6,182,212,0.06) 0%, transparent 60%)' }} />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 40% 40% at 60% 80%, rgba(244,114,182,0.04) 0%, transparent 60%)' }} />
-
-        {/* Subtle grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '64px 64px',
-          }}
+        {/* Cinematic subtle vignette */}
+        <div 
+          className="absolute inset-0" 
+          style={{ background: 'radial-gradient(ellipse 100% 100% at 50% 10%, rgba(124,58,237,0.04) 0%, transparent 60%)' }} 
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent" />
       </div>
 
       {/* ── Main Content Grid ── */}
@@ -60,11 +53,15 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div variants={itemVariants}>
+          {/* Badges */}
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-xs font-bold text-accent-primary tracking-[0.15em] uppercase">
               <Sparkles size={12} />
               {t('hero.badge')}
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-semibold text-text-primary backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.03)] hover:bg-white/10 transition-colors">
+              <Shield size={12} className="text-accent-secondary" />
+              Affiliated to Visvesvaraya Technological University (VTU)
             </span>
           </motion.div>
 
@@ -116,7 +113,7 @@ export default function Hero() {
               { value: 'Top 10', label: t('stat.rank'), color: 'text-accent-pink' },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className={`text-2xl lg:text-3xl font-bold mb-1 ${stat.color}`}>
+                <div className={`text-xl lg:text-2xl font-bold mb-1 ${stat.color}`}>
                   {stat.value}
                 </div>
                 <div className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-medium">

@@ -42,10 +42,10 @@ export default function NewsEvents() {
                   <time dateTime={event.date}>{event.date}</time>
                 </div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-accent-primary transition-colors line-clamp-2">{event.title}</h3>
-                <p className="text-sm mb-6 line-clamp-3 flex-grow">{event.excerpt}</p>
-                <Link to="/news-events" className="w-full bg-white/[0.05] hover:bg-accent-primary hover:text-white text-text-primary font-semibold py-3 px-4 rounded-xl transition-colors duration-300 flex items-center justify-center gap-2 group/btn cursor-pointer">
+                <p className="text-sm mb-6 line-clamp-2 flex-grow text-text-muted">{event.excerpt}</p>
+                <Link to="/news-events" className="text-accent-primary font-bold text-xs uppercase tracking-widest hover:underline transition-colors duration-300 flex items-center gap-2 group/btn cursor-pointer">
                   Read More
-                  <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.article>

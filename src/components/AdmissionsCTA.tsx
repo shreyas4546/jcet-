@@ -10,7 +10,7 @@ export default function AdmissionsCTA() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full bg-accent-primary/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 section-container text-center max-w-4xl">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-6"
@@ -18,16 +18,16 @@ export default function AdmissionsCTA() {
           Start Your Engineering <br className="hidden md:block" />
           <span className="text-gradient-purple">Journey at JCET</span>
         </motion.h2>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           className="text-xl mb-10 max-w-2xl mx-auto"
         >
           Join a community of innovators, creators, and leaders. Admissions are now open for the upcoming academic year.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"

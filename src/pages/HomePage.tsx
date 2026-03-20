@@ -10,6 +10,7 @@ import Testimonials from '../components/Testimonials';
 import NewsEvents from '../components/NewsEvents';
 import Gallery from '../components/Gallery';
 import AdmissionsCTA from '../components/AdmissionsCTA';
+import VtuAffiliation from '../components/VtuAffiliation';
 import Reveal from '../components/Reveal';
 
 export default function HomePage() {
@@ -27,6 +28,7 @@ export default function HomePage() {
       <Reveal><NewsEvents /></Reveal>
       <Reveal><Gallery /></Reveal>
       <Reveal><AdmissionsCTA /></Reveal>
+      <Reveal><VtuAffiliation /></Reveal>
     </>
   );
 }

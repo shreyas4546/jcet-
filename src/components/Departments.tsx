@@ -4,12 +4,12 @@ import MagneticCard from './ui/magnetic-card-v1.0.0';
 
 export default function Departments() {
   const departments = [
-    { name: 'Computer Science Engineering', description: 'Learn software development, algorithms, and computing systems.', image: 'https://picsum.photos/seed/cse/800/600' },
-    { name: 'Artificial Intelligence and Machine Learning', description: 'Explore neural networks, data science, and intelligent systems.', image: 'https://picsum.photos/seed/aiml/800/600' },
-    { name: 'Mechanical Engineering', description: 'Design, analyze, and manufacture advanced mechanical systems.', image: 'https://picsum.photos/seed/mech/800/600' },
-    { name: 'Civil Engineering', description: 'Build sustainable infrastructure, smart cities, and structural designs.', image: 'https://picsum.photos/seed/civil/800/600' },
-    { name: 'Electronics Engineering', description: 'Innovate with microprocessors, embedded systems, and IoT devices.', image: 'https://picsum.photos/seed/ece/800/600' },
-    { name: 'MBA', description: 'Develop leadership, management, and entrepreneurial skills.', image: 'https://picsum.photos/seed/mba/800/600' },
+    { name: 'Computer Science Engineering', description: 'Learn software development, algorithms, and computing.', image: 'https://picsum.photos/seed/cse/800/600' },
+    { name: 'Artificial Intelligence & ML', description: 'Explore neural networks and intelligent systems.', image: 'https://picsum.photos/seed/aiml/800/600' },
+    { name: 'Mechanical Engineering', description: 'Design and manufacture mechanical systems.', image: 'https://picsum.photos/seed/mech/800/600' },
+    { name: 'Civil Engineering', description: 'Build sustainable infrastructure and smart cities.', image: 'https://picsum.photos/seed/civil/800/600' },
+    { name: 'Electronics Engineering', description: 'Innovate with embedded systems and IoT.', image: 'https://picsum.photos/seed/ece/800/600' },
+    { name: 'MBA', description: 'Develop leadership and entrepreneurial skills.', image: 'https://picsum.photos/seed/mba/800/600' },
   ];
 
   return (

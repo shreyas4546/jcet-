@@ -36,7 +36,7 @@ const CONFIG = {
   starCount: 150,
   zGap: 1200,
   camSpeed: 2.0,
-  colors: ['#7C3AED', '#06B6D4', '#F472B6', '#F59E0B', '#10B981'],
+  colors: ['#6D28D9', '#0891B2', '#475569', '#B45309', '#047857'], // Deep, subtle academic shades
 };
 
 /* ── Scoped CSS for imperative DOM elements ── */
@@ -317,8 +317,8 @@ export default function ExperienceJCET() {
           if (textEl) {
             // RGB split effect on fast scroll (CodePen style)
             if (Math.abs(s.velocity) > 1) {
-              const offset = s.velocity * 2;
-              textEl.style.textShadow = `${offset}px 0 rgba(124,58,237,0.8), ${-offset}px 0 rgba(6,182,212,0.8)`;
+              const offset = s.velocity * 1.5;
+              textEl.style.textShadow = `${offset}px 0 rgba(109,40,217,0.3), ${-offset}px 0 rgba(8,145,178,0.3)`;
             } else {
               textEl.style.textShadow = 'none';
             }

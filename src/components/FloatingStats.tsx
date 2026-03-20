@@ -31,36 +31,36 @@ function Counter({ end, suffix = '' }: { end: number; suffix?: string }) {
 
 export default function FloatingStats() {
   return (
-    <div className="relative z-40 -mt-16 section-container">
+    <div className="relative z-40 -mt-8 section-container">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-        className="glass-card px-10 py-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center"
+        className="glass-card px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-5xl mx-auto"
       >
         <div>
-          <h3 className="text-3xl md:text-4xl font-bold text-accent-primary mb-2">
+          <h3 className="text-2xl md:text-3xl font-bold text-accent-primary mb-1">
             <Counter end={95} suffix="%" />
           </h3>
-          <p className="text-text-muted font-medium uppercase tracking-wider text-sm">Placements</p>
+          <p className="text-text-muted font-medium uppercase tracking-wider text-xs">Placements</p>
         </div>
         <div>
-          <h3 className="text-3xl md:text-4xl font-bold text-accent-secondary mb-2">
+          <h3 className="text-2xl md:text-3xl font-bold text-accent-secondary mb-1">
             <Counter end={120} suffix="+" />
           </h3>
-          <p className="text-text-muted font-medium uppercase tracking-wider text-sm">Recruiters</p>
+          <p className="text-text-muted font-medium uppercase tracking-wider text-xs">Recruiters</p>
         </div>
         <div>
-          <h3 className="text-3xl md:text-4xl font-bold text-accent-pink mb-2">
+          <h3 className="text-2xl md:text-3xl font-bold text-accent-pink mb-1">
             <Counter end={3500} suffix="+" />
           </h3>
-          <p className="text-text-muted font-medium uppercase tracking-wider text-sm">Students</p>
+          <p className="text-text-muted font-medium uppercase tracking-wider text-xs">Students</p>
         </div>
         <div>
-          <h3 className="text-3xl md:text-4xl font-bold text-accent-warm mb-2">
+          <h3 className="text-2xl md:text-3xl font-bold text-accent-warm mb-1">
             <Counter end={40} suffix="+" />
           </h3>
-          <p className="text-text-muted font-medium uppercase tracking-wider text-sm">Labs</p>
+          <p className="text-text-muted font-medium uppercase tracking-wider text-xs">Labs</p>
         </div>
       </motion.div>
     </div>

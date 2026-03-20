@@ -19,10 +19,8 @@ export default function CampusLife() {
 
   return (
     <section ref={ref} className="section-padding relative overflow-hidden">
-      <motion.div className="absolute inset-0 z-0 pointer-events-none" style={{ y: backgroundY }}>
-        <img src="https://picsum.photos/seed/campus-life-bg/1920/1080" alt="Campus Life Background" className="w-full h-[150%] object-cover opacity-5" referrerPolicy="no-referrer" loading="lazy" />
-        <div className="absolute inset-0 bg-base/80" />
-      </motion.div>
+      {/* Minimal background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/30 to-base pointer-events-none" />
 
       <div className="section-container relative z-10">
         <div className="text-center mb-16">
@@ -37,7 +35,9 @@ export default function CampusLife() {
         <BentoGrid className="max-w-7xl mx-auto">
           {activities.map((activity, index) => (
             <BentoItem key={index} title={activity.title} description={activity.description}
-              header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-white/5 to-white/10" />}
+              header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-surface/50 border border-white/[0.04] overflow-hidden">
+                <img src={activity.image} alt="" className="w-full h-full object-cover opacity-40 mix-blend-overlay" />
+              </div>}
               icon={activity.icon} image={activity.image} className={activity.className}
             />
           ))}

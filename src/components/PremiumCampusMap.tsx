@@ -28,36 +28,18 @@ const HOTSPOTS = [
     left: 68,
   },
   {
-    id: 'mech-workshop',
-    name: 'Mechanical Workshop',
-    desc: 'Fully equipped workshop with CNC machines, lathes, and 3D printers for hands-on engineering practice.',
-    icon: Wrench,
-    color: '#F59E0B',
-    top: 62,
-    left: 28,
-  },
-  {
     id: 'library',
     name: 'Library',
-    desc: 'Central library with 25,000+ volumes, digital learning resources, research journals, and reading halls.',
+    desc: 'Central library with digital learning resources, research journals, and reading halls.',
     icon: BookOpen,
     color: '#10B981',
     top: 32,
     left: 34,
   },
   {
-    id: 'hostel',
-    name: 'Hostel',
-    desc: 'Comfortable and secure residential facilities with mess, Wi-Fi, and recreation rooms.',
-    icon: Home,
-    color: '#F472B6',
-    top: 72,
-    left: 74,
-  },
-  {
     id: 'sports',
     name: 'Sports Complex',
-    desc: 'Indoor and outdoor sports facilities including cricket, basketball, volleyball, and athletics.',
+    desc: 'Indoor and outdoor sports facilities including cricket, basketball, and athletics.',
     icon: Trophy,
     color: '#EF4444',
     top: 74,
@@ -66,7 +48,7 @@ const HOTSPOTS = [
   {
     id: 'auditorium',
     name: 'Auditorium',
-    desc: 'Multi-purpose hall with 500+ seating for seminars, cultural events, and guest lectures.',
+    desc: 'Multi-purpose hall for seminars, cultural events, and guest lectures.',
     icon: Theater,
     color: '#8B5CF6',
     top: 48,
@@ -123,16 +105,7 @@ export default function PremiumCampusMap() {
         aria-hidden="true"
       />
 
-      {/* Ambient glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
-        style={{
-          background: isLight
-            ? 'radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%)'
-            : 'radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
+      {/* Removed ambient glow to reduce noise */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -298,30 +271,30 @@ export default function PremiumCampusMap() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 20, scale: 0.95 }}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="absolute bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:w-[360px] z-30 rounded-2xl p-5 md:p-6"
+                  className="absolute bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:w-[320px] z-30 rounded-2xl p-4 md:p-5"
                   style={{
                     background: isLight
-                      ? 'rgba(255,255,255,0.82)'
-                      : 'rgba(12,16,30,0.82)',
-                    backdropFilter: 'blur(20px) saturate(1.4)',
-                    WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+                      ? 'rgba(255,255,255,0.7)'
+                      : 'rgba(12,16,30,0.7)',
+                    backdropFilter: 'blur(16px) saturate(1.2)',
+                    WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
                     border: `1px solid ${isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.08)'}`,
                     boxShadow: isLight
-                      ? '0 20px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.03)'
-                      : '0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)',
+                      ? '0 10px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03)'
+                      : '0 10px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04)',
                   }}
                 >
                   {/* Close button */}
                   <button
                     onClick={() => setActiveSpot(null)}
-                    className="absolute top-3 right-3 p-1.5 rounded-lg transition-colors duration-200 cursor-pointer"
+                    className="absolute top-3 right-3 p-1 rounded-lg transition-colors duration-200 cursor-pointer"
                     style={{
                       color: isLight ? '#94a3b8' : 'rgba(255,255,255,0.4)',
                       background: isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.05)',
                     }}
                     aria-label="Close popup"
                   >
-                    <X size={16} />
+                    <X size={14} />
                   </button>
 
                   {/* Content */}

@@ -37,8 +37,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-base/95 backdrop-blur-lg border-b border-white/[0.06] py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-surface/80 backdrop-blur-xl border-b border-white/[0.04] py-4'
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="section-container flex justify-between items-center">
