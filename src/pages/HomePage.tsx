@@ -1,5 +1,4 @@
 import Hero from '../components/Hero';
-import FloatingStats from '../components/FloatingStats';
 import ExperienceJCET from '../components/ExperienceJCET';
 import WhyJCET from '../components/WhyJCET';
 import Departments from '../components/Departments';
@@ -17,7 +16,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <FloatingStats />
       <ExperienceJCET />
       <Reveal><WhyJCET /></Reveal>
       <Reveal><Departments /></Reveal>
