@@ -3,7 +3,7 @@ import FloatingStats from '../components/FloatingStats';
 import ExperienceJCET from '../components/ExperienceJCET';
 import WhyJCET from '../components/WhyJCET';
 import Departments from '../components/Departments';
-import CampusMap from '../components/CampusMap';
+import PremiumCampusMap from '../components/PremiumCampusMap';
 import CampusLife from '../components/CampusLife';
 import Placements from '../components/Placements';
 import Testimonials from '../components/Testimonials';
@@ -20,8 +20,8 @@ export default function HomePage() {
       <ExperienceJCET />
       <Reveal><WhyJCET /></Reveal>
       <Reveal><Departments /></Reveal>
-      <Reveal><CampusMap /></Reveal>
       <Reveal><CampusLife /></Reveal>
+      <PremiumCampusMap />
       <Reveal><Placements /></Reveal>
       <Reveal><Testimonials /></Reveal>
       <Reveal><NewsEvents /></Reveal>

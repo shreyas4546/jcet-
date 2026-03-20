@@ -104,7 +104,6 @@ export default function ExperienceJCET() {
   const stateRef = useRef({ scroll: 0, velocity: 0, targetSpeed: 0, mouseX: 0, mouseY: 0 });
   const rafRef = useRef<number>(0);
   const [isActive, setIsActive] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const velRef = useRef<HTMLElement>(null);
   const coordRef = useRef<HTMLElement>(null);
@@ -112,15 +111,6 @@ export default function ExperienceJCET() {
   const { theme } = useTheme();
 
   const isLight = theme === 'light';
-
-  // Reduced motion detection
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReduceMotion(mq.matches);
-    const h = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
-    mq.addEventListener('change', h);
-    return () => mq.removeEventListener('change', h);
-  }, []);
 
   // Mobile detection
   useEffect(() => {
@@ -132,7 +122,7 @@ export default function ExperienceJCET() {
 
   // Intersection observer
   useEffect(() => {
-    if (reduceMotion || isMobile) return;
+    if (isMobile) return;
     const section = sectionRef.current;
     if (!section) return;
     const obs = new IntersectionObserver(
@@ -141,7 +131,7 @@ export default function ExperienceJCET() {
     );
     obs.observe(section);
     return () => obs.disconnect();
-  }, [reduceMotion, isMobile]);
+  }, [isMobile]);
 
   // Build the 3D world items
   const buildWorld = useCallback(() => {
@@ -255,10 +245,10 @@ export default function ExperienceJCET() {
   }, [t, theme, isLight]);
 
   useEffect(() => {
-    if (!reduceMotion && !isMobile) {
+    if (!isMobile) {
       buildWorld();
     }
-  }, [buildWorld, reduceMotion, isMobile]);
+  }, [buildWorld, isMobile]);
 
   // Mouse tracking
   useEffect(() => {
@@ -347,7 +337,7 @@ export default function ExperienceJCET() {
 
   // RAF loop
   useEffect(() => {
-    if (!isActive || reduceMotion || isMobile) return;
+    if (!isActive || isMobile) return;
 
     const tick = () => {
       if (sectionRef.current) {
@@ -363,10 +353,10 @@ export default function ExperienceJCET() {
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [isActive, reduceMotion, isMobile, render]);
+  }, [isActive, isMobile, render]);
 
-  // ── REDUCED MOTION / MOBILE FALLBACK ──
-  if (reduceMotion || isMobile) {
+  // ── MOBILE FALLBACK ──
+  if (isMobile) {
     return (
       <section className="py-16 md:py-24 bg-base transition-colors duration-500 px-5" aria-label="Experience JCET">
         <div className="max-w-md mx-auto space-y-12">
