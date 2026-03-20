@@ -29,7 +29,7 @@ export default function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="max-w-2xl mx-auto"
+            className="max-w-2xl mx-auto mt-6 text-lg"
           >
             Specialized centers of excellence driving research, innovation, and leadership.
           </motion.p>

@@ -29,7 +29,7 @@ export default function Placements() {
           <motion.p
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="max-w-2xl mx-auto"
+            className="max-w-2xl mx-auto mt-6 text-lg"
           >
             Our students are recruited by the world's leading technology companies.
           </motion.p>

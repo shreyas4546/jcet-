@@ -43,7 +43,7 @@ export default function WhyJCET() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="max-w-2xl mx-auto"
+            className="max-w-2xl mx-auto mt-6 text-lg"
           >
             We don't just teach engineering; we cultivate innovators. Discover what makes our approach unique.
           </motion.p>

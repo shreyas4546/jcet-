@@ -139,7 +139,7 @@
 
   /* Primary Button — Refined soft glow */
   .btn-primary {
-    @apply px-8 py-4 font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
+    @apply px-6 py-3.5 md:px-8 md:py-4 font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
     background-color: var(--color-accent-primary);
     color: white;
     box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent-primary) 15%, transparent);
@@ -152,7 +152,7 @@
 
   /* Secondary Button — Refined */
   .btn-secondary {
-    @apply px-8 py-4 bg-transparent font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
+    @apply px-6 py-3.5 md:px-8 md:py-4 bg-transparent font-semibold rounded-xl transition-all duration-300 text-base tracking-wide cursor-pointer;
     border: 1px solid color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
     color: var(--color-text-primary);
   }
@@ -169,7 +169,7 @@
 
   /* Section Spacing — 8pt grid */
   .section-padding {
-    @apply py-24 md:py-32;
+    @apply py-20 lg:py-28;
   }
 
   /* Section Header pattern */

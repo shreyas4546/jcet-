@@ -126,115 +126,68 @@ export default function Hero() {
 
         {/* ════════ RIGHT: Premium Visual (5 cols) ════════ */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.4 }}
-          className="hidden lg:flex lg:col-span-5 items-center justify-center"
+           initial={{ opacity: 0, scale: 0.95 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.4 }}
+           className="hidden lg:flex lg:col-span-5 items-center justify-center relative w-full aspect-[4/5] max-w-lg mx-auto rounded-3xl overflow-hidden border border-white/[0.08] shadow-2xl"
         >
-          <motion.div
-            variants={floatVariants}
-            initial="initial"
-            animate="float"
-            className="relative w-full max-w-[440px] aspect-square"
-          >
-            {/* Glow backdrop */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] rounded-full blur-[100px] pointer-events-none"
-              style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.2) 0%, rgba(6,182,212,0.08) 50%, transparent 70%)' }}
-            />
+          {/* Main Image */}
+          <img 
+            src="https://picsum.photos/seed/jcetuniversityhero/1200/1500" 
+            alt="JCET Campus and Students"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            referrerPolicy="no-referrer"
+          />
+          
+          {/* Subtle Dark Gradient Overlays for integration */}
+          <div className="absolute inset-0 bg-[#0B0F1A]/10 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-transparent to-transparent opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F1A] lg:from-[#0B0F1A]/80 via-transparent to-transparent opacity-80" />
+          <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-3xl pointer-events-none" />
 
-            {/* Concentric rings */}
-            <div className="absolute inset-0 rounded-full border border-accent-primary/15 animate-[spin_50s_linear_infinite]" />
-            <div className="absolute inset-6 rounded-full border border-accent-secondary/12 border-dashed animate-[spin_35s_linear_infinite_reverse]" />
-            <div className="absolute inset-14 rounded-full border border-accent-pink/8 animate-[spin_45s_linear_infinite]" />
-            <div className="absolute inset-20 rounded-full border border-accent-warm/6 animate-[spin_60s_linear_infinite_reverse]" />
-
-            {/* Center Orb */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full flex items-center justify-center overflow-hidden border border-white/[0.1]"
-              style={{
-                background: 'radial-gradient(circle at 35% 35%, #7C3AED, #4C1D95 40%, #1F2937 80%)',
-                boxShadow: '0 0 60px rgba(124, 58, 237, 0.3), 0 0 120px rgba(124, 58, 237, 0.1), inset 0 0 30px rgba(0,0,0,0.4)',
-              }}
-            >
-              <span className="text-4xl font-display font-black text-white tracking-[0.15em] drop-shadow-2xl select-none">
-                JCET
-              </span>
-            </div>
-
-            {/* Orbiting Tech Icons */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-              className="absolute inset-0"
-            >
-              {[
-                { Icon: Code, pos: 'top-0 left-1/2 -translate-x-1/2 -translate-y-1/2', color: 'text-accent-secondary' },
-                { Icon: Cpu, pos: 'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2', color: 'text-accent-pink' },
-                { Icon: Globe, pos: 'left-0 top-1/2 -translate-x-1/2 -translate-y-1/2', color: 'text-accent-primary' },
-                { Icon: Zap, pos: 'right-0 top-1/2 translate-x-1/2 -translate-y-1/2', color: 'text-accent-warm' },
-              ].map(({ Icon, pos, color }) => (
-                <div
-                  key={pos}
-                  className={`absolute ${pos} w-11 h-11 glass-card flex items-center justify-center cursor-pointer hover:border-accent-primary/40 hover:scale-110 transition-all duration-300`}
-                  style={{ borderRadius: '12px' }}
-                >
-                  <Icon size={16} className={color} />
+          {/* Floating Trust Badge */}
+          <div className="absolute bottom-8 left-8 right-8 glass-card p-5 rounded-2xl border border-white/[0.08] backdrop-blur-md shadow-2xl">
+             <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center border border-accent-primary/30">
+                   <Globe size={20} className="text-accent-primary" />
                 </div>
-              ))}
-            </motion.div>
-
-            {/* Floating stat badges */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
-              className="absolute -left-6 top-1/4 glass-card px-3 py-2 flex items-center gap-2.5"
-              style={{ borderRadius: '12px' }}
-            >
-              <div className="w-8 h-8 rounded-lg bg-accent-secondary/15 flex items-center justify-center">
-                <Database size={14} className="text-accent-secondary" />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-text-heading">{t('pill.labs')}</div>
-                <div className="text-[9px] text-text-muted uppercase tracking-wider">{t('pill.superlabs')}</div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.4, duration: 0.6 }}
-              className="absolute -right-6 bottom-1/4 glass-card px-3 py-2 flex items-center gap-2.5"
-              style={{ borderRadius: '12px' }}
-            >
-              <div className="w-8 h-8 rounded-lg bg-accent-pink/15 flex items-center justify-center">
-                <Zap size={14} className="text-accent-pink" />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-text-heading">{t('pill.recruiters')}</div>
-                <div className="text-[9px] text-text-muted uppercase tracking-wider">{t('pill.mncs')}</div>
-              </div>
-            </motion.div>
-          </motion.div>
+                <div>
+                   <h3 className="text-white font-bold text-sm tracking-wide">Excellence in Education</h3>
+                   <p className="text-text-muted text-[11px] uppercase tracking-wider mt-1">Ranked Top 10 in State</p>
+                </div>
+             </div>
+          </div>
         </motion.div>
       </div>
 
       {/* ── Mobile visual (stacked, visible < lg) ── */}
-      <div className="lg:hidden flex justify-center pb-8 relative z-10">
-        <div className="relative w-56 h-56">
-          <div className="absolute inset-0 rounded-full border border-accent-primary/15 animate-[spin_50s_linear_infinite]" />
-          <div className="absolute inset-4 rounded-full border border-accent-secondary/12 border-dashed animate-[spin_35s_linear_infinite_reverse]" />
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full flex items-center justify-center border border-white/[0.1]"
-            style={{
-              background: 'radial-gradient(circle at 35% 35%, #7C3AED, #4C1D95 40%, #1F2937 80%)',
-              boxShadow: '0 0 40px rgba(124, 58, 237, 0.25)',
-            }}
-          >
-            <span className="text-2xl font-display font-black text-white tracking-[0.15em] select-none">JCET</span>
-          </div>
-        </div>
+      <div className="lg:hidden flex justify-center pb-12 relative z-10 px-4">
+         <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, delay: 0.4 }}
+           className="relative w-full max-w-md aspect-video rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
+         >
+            <img 
+               src="https://picsum.photos/seed/jcetuniversityhero/800/600" 
+               alt="JCET Campus and Students"
+               className="w-full h-full object-cover object-center"
+               loading="lazy"
+               referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-transparent to-transparent opacity-90" />
+            <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl pointer-events-none" />
+            
+            <div className="absolute bottom-4 left-4 right-4 glass-card p-3 rounded-xl border border-white/[0.08] backdrop-blur-md flex items-center gap-3">
+               <div className="w-8 h-8 rounded-lg bg-accent-primary/20 flex items-center justify-center">
+                  <Globe size={14} className="text-accent-primary" />
+               </div>
+               <div>
+                  <h3 className="text-white font-bold text-xs uppercase tracking-wide">Premium Campus</h3>
+               </div>
+            </div>
+         </motion.div>
       </div>
     </section>
   );
