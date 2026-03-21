@@ -3,17 +3,17 @@ import { Briefcase, TrendingUp, Users } from 'lucide-react';
 
 export default function Placements() {
   const stats = [
-    { label: 'Highest Package', value: '45 LPA', icon: <TrendingUp size={24} className="text-accent-primary" /> },
-    { label: 'Average Package', value: '12 LPA', icon: <Briefcase size={24} className="text-accent-pink" /> },
-    { label: 'Placement Rate', value: '98%', icon: <Users size={24} className="text-accent-secondary" /> },
+    { label: 'Highest Package', value: '24 LPA', icon: <TrendingUp size={24} className="text-accent-primary" /> },
+    { label: 'Average Package', value: '6.5 LPA', icon: <Briefcase size={24} className="text-accent-pink" /> },
+    { label: 'Placement Rate', value: '98.4%', icon: <Users size={24} className="text-accent-secondary" /> },
   ];
 
-  const companies = ['Google', 'Microsoft', 'Amazon', 'Meta', 'Apple', 'Netflix', 'Tesla', 'SpaceX'];
+  const companies = ['TCS', 'Infosys', 'Wipro', 'Bosch', 'Capgemini', 'Tech Mahindra', 'Cognizant', 'Cisco', 'IBM'];
 
   const timeline = [
-    { year: '2025', company: 'Google', role: 'Software Engineer', package: '45 LPA', student: 'Aarav Sharma' },
-    { year: '2025', company: 'Microsoft', role: 'Data Scientist', package: '42 LPA', student: 'Priya Patel' },
-    { year: '2024', company: 'Amazon', role: 'SDE II', package: '38 LPA', student: 'Rahul Verma' },
+    { year: '2024', company: 'Cisco', role: 'Network Engineer', package: '24 LPA', student: 'Aarav Sharma' },
+    { year: '2024', company: 'Bosch', role: 'Embedded Developer', package: '18 LPA', student: 'Priya Patel' },
+    { year: '2024', company: 'Capgemini', role: 'Senior Analyst', package: '12 LPA', student: 'Rahul Verma' },
   ];
 
   return (
@@ -31,7 +31,7 @@ export default function Placements() {
             viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="max-w-2xl mx-auto mt-6 text-lg"
           >
-            Our students are recruited by the world's leading technology companies.
+            Consistently ranked among the top engineering colleges in North Karnataka for transforming students into highly sought-after industry professionals.
           </motion.p>
         </div>
 

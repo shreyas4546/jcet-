@@ -4,12 +4,12 @@ import MagneticCard from './ui/magnetic-card-v1.0.0';
 
 export default function Departments() {
   const departments = [
-    { name: 'Computer Science Engineering', description: 'Learn software development, algorithms, and computing.', image: 'https://picsum.photos/seed/cse/800/600' },
-    { name: 'Artificial Intelligence & ML', description: 'Explore neural networks and intelligent systems.', image: 'https://picsum.photos/seed/aiml/800/600' },
-    { name: 'Mechanical Engineering', description: 'Design and manufacture mechanical systems.', image: 'https://picsum.photos/seed/mech/800/600' },
-    { name: 'Civil Engineering', description: 'Build sustainable infrastructure and smart cities.', image: 'https://picsum.photos/seed/civil/800/600' },
-    { name: 'Electronics Engineering', description: 'Innovate with embedded systems and IoT.', image: 'https://picsum.photos/seed/ece/800/600' },
-    { name: 'MBA', description: 'Develop leadership and entrepreneurial skills.', image: 'https://picsum.photos/seed/mba/800/600' },
+    { name: 'Computer Science Engineering', description: 'NBA Accredited program focusing on advanced algorithms and full-stack development.', image: 'https://picsum.photos/seed/cse/800/600' },
+    { name: 'Artificial Intelligence & ML', description: 'State-of-the-art Center of Excellence for neural networks and predictive analytics.', image: 'https://picsum.photos/seed/aiml/800/600' },
+    { name: 'Mechanical Engineering', description: 'Pioneering robotics and advanced manufacturing guided by industry veterans.', image: 'https://picsum.photos/seed/mech/800/600' },
+    { name: 'Civil Engineering', description: 'Driving sustainable smart-city infrastructure for North Karnataka and beyond.', image: 'https://picsum.photos/seed/civil/800/600' },
+    { name: 'Electronics Engineering', description: 'Hub for VLSI design, IoT innovation, and next-gen embedded technologies.', image: 'https://picsum.photos/seed/ece/800/600' },
+    { name: 'MBA', description: 'VTU-recognized leadership program heavily integrated with local industry partners.', image: 'https://picsum.photos/seed/mba/800/600' },
   ];
 
   return (

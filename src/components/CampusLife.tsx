@@ -10,11 +10,11 @@ export default function CampusLife() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   const activities = [
-    { title: 'Hackathons & Tech Fests', description: '24-hour coding challenges and technology showcases.', image: 'https://picsum.photos/seed/hackathon/800/800', className: 'md:col-span-2 md:row-span-2', icon: <Code className="h-4 w-4 text-accent-primary" /> },
-    { title: 'Clubs & Societies', description: 'Join over 20+ technical and cultural clubs.', image: 'https://picsum.photos/seed/clubs/800/600', className: 'md:col-span-1 md:row-span-1', icon: <Users className="h-4 w-4 text-accent-pink" /> },
-    { title: 'Sports & Athletics', description: 'State-of-the-art sports facilities and tournaments.', image: 'https://picsum.photos/seed/sports/800/600', className: 'md:col-span-1 md:row-span-1', icon: <Trophy className="h-4 w-4 text-accent-warm" /> },
-    { title: 'Cultural Events', description: 'Annual fests celebrating art, music, and dance.', image: 'https://picsum.photos/seed/cultural/800/600', className: 'md:col-span-1 md:row-span-1', icon: <Music className="h-4 w-4 text-accent-secondary" /> },
-    { title: 'Workshops & Seminars', description: 'Hands-on learning with industry experts.', image: 'https://picsum.photos/seed/workshops/800/600', className: 'md:col-span-2 md:row-span-1', icon: <Lightbulb className="h-4 w-4 text-accent-primary" /> },
+    { title: 'VTU State-Level Hackathons', description: 'Annual 24-hour coding challenges hosted by our vibrant IEEE Student Branch.', image: 'https://picsum.photos/seed/hackathon/800/800', className: 'md:col-span-2 md:row-span-2', icon: <Code className="h-4 w-4 text-accent-primary" /> },
+    { title: 'Clubs & Societies', description: 'Active IEEE, ISTE, technical squads, and vibrant Kannada cultural forums.', image: 'https://picsum.photos/seed/clubs/800/600', className: 'md:col-span-1 md:row-span-1', icon: <Users className="h-4 w-4 text-accent-pink" /> },
+    { title: 'Zonal Athletics', description: 'VTU Zonal champions equipped with state-of-the-art courts and athletic grounds.', image: 'https://picsum.photos/seed/sports/800/600', className: 'md:col-span-1 md:row-span-1', icon: <Trophy className="h-4 w-4 text-accent-warm" /> },
+    { title: '"Pratibha" Cultural Fest', description: 'Our flagship annual festival celebrating art, music, and Karnataka heritage.', image: 'https://picsum.photos/seed/cultural/800/600', className: 'md:col-span-1 md:row-span-1', icon: <Music className="h-4 w-4 text-accent-secondary" /> },
+    { title: 'Industry Workshops', description: 'Regular skill-building seminars hosted by hub technology leaders from Hubballi IT Park.', image: 'https://picsum.photos/seed/workshops/800/600', className: 'md:col-span-2 md:row-span-1', icon: <Lightbulb className="h-4 w-4 text-accent-primary" /> },
   ];
 
   return (

@@ -37,8 +37,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-surface/80 backdrop-blur-xl border-b border-white/[0.04] py-4'
-          : 'bg-transparent py-6'
+          ? 'bg-surface/60 backdrop-blur-2xl border-b border-white/[0.08] py-3'
+          : 'bg-transparent py-5'
       }`}
     >
       <div className="section-container flex justify-between items-center">
@@ -58,20 +58,32 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden xl:flex items-center gap-1">
+        <ul className="hidden xl:flex items-center gap-2">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return (
-              <li key={link.key}>
+              <li key={link.key} className="group">
                 <Link
                   to={link.path}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
+                  className={`relative px-4 py-2.5 text-[13px] font-medium tracking-wide transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-accent-primary bg-accent-primary/10'
-                      : 'text-text-muted hover:text-text-heading hover:bg-white/[0.04]'
+                      ? 'text-white'
+                      : 'text-text-muted hover:text-white/90'
                   }`}
                 >
                   {t(link.key)}
+                  {/* Animated active underline indicator */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute left-2 right-2 -bottom-0.5 h-[2px] rounded-full bg-accent-primary"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {/* Subtle hover underline for non-active items */}
+                  {!isActive && (
+                    <span className="absolute left-3 right-3 -bottom-0.5 h-[2px] rounded-full bg-white/0 transition-all duration-300 group-hover:bg-white/20" />
+                  )}
                 </Link>
               </li>
             );
@@ -99,8 +111,8 @@ export default function Navbar() {
 
           <Link
             to="/admissions"
-            className="px-5 py-2.5 bg-accent-primary text-white text-sm font-semibold rounded-xl hover:bg-accent-primary-hover transition-all duration-300 cursor-pointer"
-            style={{ boxShadow: '0 0 16px rgba(124, 58, 237, 0.2)' }}
+            className="px-6 py-2.5 bg-accent-primary text-white text-[13px] font-bold tracking-wide rounded-full hover:bg-accent-primary-hover hover:scale-[1.04] active:scale-[0.97] transition-all duration-200 cursor-pointer"
+            style={{ boxShadow: '0 0 20px rgba(124, 58, 237, 0.25), 0 0 60px rgba(124, 58, 237, 0.08)' }}
           >
             {t('nav.applyNow')}
           </Link>
