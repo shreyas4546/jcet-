@@ -12,25 +12,26 @@ import * as THREE from 'three';
    ────────────────────────────────────────────────────── */
 
 // ─── Background Slide Images ───
+// Using w=1280, q=50, fm=webp for maximum performance and instant loading
 const SLIDES = [
   {
-    src: 'https://images.unsplash.com/photo-1562774053-701939374585?w=1920&q=80&auto=format',
+    src: 'https://images.unsplash.com/photo-1562774053-701939374585?w=1280&q=50&fm=webp',
     alt: 'University campus aerial view',
   },
   {
-    src: 'https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1920&q=80&auto=format',
+    src: 'https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1280&q=50&fm=webp',
     alt: 'Engineering students in laboratory',
   },
   {
-    src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&q=80&auto=format',
+    src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1280&q=50&fm=webp',
     alt: 'Students graduating at university',
   },
   {
-    src: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1920&q=80&auto=format',
+    src: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1280&q=50&fm=webp',
     alt: 'University campus building at dusk',
   },
   {
-    src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=80&auto=format',
+    src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1280&q=50&fm=webp',
     alt: 'Students collaborating in modern workspace',
   },
 ];
@@ -61,6 +62,14 @@ interface GlassCardProps {
 }
 
 function GlassCard({ position, rotation, icon, label, sublabel, accentColor }: GlassCardProps) {
+  const [showHtml, setShowHtml] = useState(false);
+
+  useEffect(() => {
+    // Delay HTML rendering natively to prevent flashing before Canvas mounts
+    const timer = setTimeout(() => setShowHtml(true), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
   const material = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
@@ -85,14 +94,14 @@ function GlassCard({ position, rotation, icon, label, sublabel, accentColor }: G
           </mesh>
         </RoundedBox>
 
-        <Html transform wrapperClass="glass-card-html" distanceFactor={2.5} position={[0, 0, 0.08]}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }} // Prevent white flash on initial reload
-            className="flex items-center gap-4 w-[340px] px-6 py-4 rounded-xl select-none"
-            style={{ pointerEvents: 'none' }}
-          >
+        <Html 
+          transform 
+          wrapperClass="glass-card-html" 
+          distanceFactor={2.5} 
+          position={[0, 0, 0.08]}
+          style={{ opacity: showHtml ? 1 : 0, transition: 'opacity 0.8s ease-in-out' }}
+        >
+          <div className="flex items-center gap-4 w-[340px] px-6 py-4 rounded-xl select-none" style={{ pointerEvents: 'none' }}>
             <div className={`p-3 rounded-xl bg-white/10 ${accentColor.replace('text-', 'text-').replace(' ', '')} shadow-inner border border-white/20`} style={{ color: accentColor }}>
               {icon}
             </div>
@@ -100,7 +109,7 @@ function GlassCard({ position, rotation, icon, label, sublabel, accentColor }: G
               <span className="text-xl font-bold tracking-tight text-white drop-shadow-md">{label}</span>
               <span className="text-sm font-medium text-white/70 uppercase tracking-widest">{sublabel}</span>
             </div>
-          </motion.div>
+          </div>
         </Html>
       </group>
     </Float>
