@@ -1,15 +1,18 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import MagneticCard from './ui/magnetic-card-v1.0.0';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Departments() {
+  const { t } = useLanguage();
+
   const departments = [
-    { name: 'Computer Science Engineering', description: 'NBA Accredited program focusing on advanced algorithms and full-stack development.', image: 'https://picsum.photos/seed/cse/800/600' },
-    { name: 'Artificial Intelligence & ML', description: 'State-of-the-art Center of Excellence for neural networks and predictive analytics.', image: 'https://picsum.photos/seed/aiml/800/600' },
-    { name: 'Mechanical Engineering', description: 'Pioneering robotics and advanced manufacturing guided by industry veterans.', image: 'https://picsum.photos/seed/mech/800/600' },
-    { name: 'Civil Engineering', description: 'Driving sustainable smart-city infrastructure for North Karnataka and beyond.', image: 'https://picsum.photos/seed/civil/800/600' },
-    { name: 'Electronics Engineering', description: 'Hub for VLSI design, IoT innovation, and next-gen embedded technologies.', image: 'https://picsum.photos/seed/ece/800/600' },
-    { name: 'MBA', description: 'VTU-recognized leadership program heavily integrated with local industry partners.', image: 'https://picsum.photos/seed/mba/800/600' },
+    { name: t('dept.cse.name'), description: t('dept.cse.desc'), image: 'https://picsum.photos/seed/cse/800/600' },
+    { name: t('dept.aiml.name'), description: t('dept.aiml.desc'), image: 'https://picsum.photos/seed/aiml/800/600' },
+    { name: t('dept.mech.name'), description: t('dept.mech.desc'), image: 'https://picsum.photos/seed/mech/800/600' },
+    { name: t('dept.civil.name'), description: t('dept.civil.desc'), image: 'https://picsum.photos/seed/civil/800/600' },
+    { name: t('dept.ece.name'), description: t('dept.ece.desc'), image: 'https://picsum.photos/seed/ece/800/600' },
+    { name: t('dept.mba.name'), description: t('dept.mba.desc'), image: 'https://picsum.photos/seed/mba/800/600' },
   ];
 
   return (
@@ -22,7 +25,7 @@ export default function Departments() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            Academic <span className="text-gradient-purple">Departments</span>
+            {t('dept.title')} <span className="text-gradient-purple">{t('dept.highlight')}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -31,7 +34,7 @@ export default function Departments() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="max-w-2xl mx-auto mt-6 text-lg"
           >
-            Specialized centers of excellence driving research, innovation, and leadership.
+            {t('dept.desc')}
           </motion.p>
         </div>
 
@@ -47,7 +50,7 @@ export default function Departments() {
             >
               <MagneticCard
                 title={dept.name}
-                subtitle="Department"
+                subtitle={t('dept.card.subtitle')}
                 imageSrc={dept.image}
                 className="h-full"
               >
@@ -55,7 +58,7 @@ export default function Departments() {
                   {dept.description}
                 </p>
                 <Link to="/departments" className="text-accent-primary font-bold text-xs uppercase tracking-widest hover:underline cursor-pointer">
-                  Explore More
+                  {t('dept.explore')}
                 </Link>
               </MagneticCard>
             </motion.div>

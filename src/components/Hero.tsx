@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Download, CheckCircle, Trophy, Shield } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /* ──────────────────────────────────────────────────────
    Dynamic Unpredictable Background & Floating Stats Hero
@@ -72,6 +73,7 @@ const sliderVariants = {
 };
 
 export default function Hero() {
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animType, setAnimType] = useState('deepBlur');
 
@@ -197,24 +199,24 @@ export default function Hero() {
           <div className="py-4 px-6 md:px-8 flex items-center gap-4 hover:bg-white/20 transition-colors cursor-default">
             <CheckCircle className="text-violet-300" size={24} />
             <div>
-              <div className="text-xl font-bold text-white tracking-tight leading-none mb-1">98.4%</div>
-              <div className="text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-1">Placement Rate</div>
+              <div className="text-xl font-bold text-white tracking-tight leading-none mb-1">{t('hero.stat.valPlacement')}</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-slate-300 font-medium mt-0.5">{t('hero.stat.placement')}</div>
             </div>
           </div>
-
-          <div className="py-4 px-6 md:px-8 flex items-center gap-4 hover:bg-white/20 transition-colors cursor-default">
+          
+          <div className="py-4 px-6 md:px-8 flex items-center gap-4 hover:bg-white/5 transition-colors cursor-pointer">
             <Shield className="text-cyan-300" size={24} />
             <div>
-              <div className="text-xl font-bold text-white tracking-tight leading-none mb-1">50+</div>
-              <div className="text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-1">Research Labs</div>
+              <div className="text-xl font-bold text-white tracking-tight leading-none mb-1">{t('hero.stat.valLabs')}</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-slate-300 font-medium mt-0.5">{t('hero.stat.labs')}</div>
             </div>
           </div>
-
-          <div className="py-4 px-6 md:px-8 flex items-center gap-4 hover:bg-white/20 transition-colors cursor-default">
+          
+          <div className="py-4 px-6 md:px-8 flex items-center gap-4 hover:bg-white/5 transition-colors rounded-r-full cursor-pointer">
             <Trophy className="text-pink-300" size={24} />
             <div>
-              <div className="text-xl font-bold text-white tracking-tight leading-none mb-1">Top 10</div>
-              <div className="text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-1">University Rank</div>
+              <div className="text-xl font-bold text-white tracking-tight leading-none mb-1">{t('hero.stat.valRank')}</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-slate-300 font-medium mt-0.5">{t('hero.stat.rank')}</div>
             </div>
           </div>
         </motion.div>
